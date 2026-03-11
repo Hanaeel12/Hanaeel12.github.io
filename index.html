@@ -1,10 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-   <title>My First HTML Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio professionnel | Hanae El Miloudi</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-   <h1>Welcome to My Website</h1>
-   <p>This is a paragraph of text.</p>
+  <header class="hero">
+    <nav class="navbar container">
+      <div class="logo">Hanae</div>
+      <ul class="nav-links">
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="menu-btn" class="menu-btn">☰</button>
+    </nav>
+
+    <div class="hero-content container">
+      <div class="hero-text">
+        <span class="badge">Portfolio professionnel</span>
+        <h1>Hanae El Miloudi</h1>
+        <h2>Géomaticienne en alternance • Master Géomatique</h2>
+        <p>
+          Je conçois des solutions cartographiques, des analyses spatiales
+          et des outils d’aide à la décision pour valoriser la donnée géographique.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+          <a href="#contact" class="btn btn-secondary">Me contacter</a>
+        </div>
+      </div>
+
+      <div class="hero-cards">
+        <div class="info-card">
+          <span>Spécialité</span>
+          <strong>SIG & cartographie</strong>
+        </div>
+        <div class="info-card">
+          <span>Approche</span>
+          <strong>Technique & métier</strong>
+        </div>
+        <div class="info-card">
+          <span>Outils</span>
+          <strong>ArcGIS, QGIS, SQL</strong>
+        </div>
+        <div class="info-card">
+          <span>Objectif</span>
+          <strong>Pilotage de projets</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="apropos" class="section container reveal">
+      <div class="section-title">
+        <p>À propos</p>
+        <h2>Mon parcours</h2>
+      </div>
+      <div class="about-grid">
+        <div class="card">
+          <p>
+            Étudiante en géomatique et alternante en agence cartographie,
+            je développe des compétences en analyse spatiale, cartographie web,
+            traitement de données géographiques et automatisation.
+          </p>
+        </div>
+        <div class="card">
+          <p>
+            Mon parcours mêle dimension technique, compréhension des besoins
+            utilisateurs et valorisation des données au service de projets concrets.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="competences" class="section container reveal">
+      <div class="section-title">
+        <p>Compétences</p>
+        <h2>Mes outils clés</h2>
+      </div>
+      <div class="skills">
+        <span>ArcGIS Pro</span>
+        <span>ArcGIS Online</span>
+        <span>QGIS</span>
+        <span>FME</span>
+        <span>SQL / PostGIS</span>
+        <span>Python</span>
+        <span>Cartographie web</span>
+        <span>Analyse spatiale</span>
+      </div>
+    </section>
+
+    <section id="projets" class="section container reveal">
+      <div class="section-title">
+        <p>Projets</p>
+        <h2>Sélection de réalisations</h2>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-icon"></div>
+          <h3>Applications cartographiques métier</h3>
+          <p>
+            Conception et amélioration d’applications web SIG pour répondre à des
+            besoins opérationnels et faciliter la visualisation des données spatiales.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-icon"></div>
+          <h3>Automatisation de traitements géographiques</h3>
+          <p>
+            Mise en place de workflows pour structurer, traiter et valoriser les
+            données géographiques dans un objectif de gain de temps et de fiabilité.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-icon"></div>
+          <h3>Analyse spatiale et aide à la décision</h3>
+          <p>
+            Production d’analyses, de cartes et de livrables permettant
+            d’accompagner les équipes dans leurs projets et leurs besoins terrain.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container reveal">
+      <div class="mini-grid">
+        <div class="card">
+          <h3>Expérience</h3>
+          <p>
+            Alternance en géomatique avec participation à des projets de cartographie,
+            structuration de données et développement d’outils.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Formation</h3>
+          <p>
+            Master en géomatique avec spécialisation en géodécisionnel,
+            géomarketing et multimédia.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Objectif</h3>
+          <p>
+            Évoluer vers la gestion et le pilotage de projets géomatiques,
+            data et innovation.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer reveal">
+    <div class="container footer-box">
+      <div>
+        <p class="footer-label">Contact</p>
+        <h2>Travaillons ensemble</h2>
+        <p>
+          Ajoute ici ton e-mail, ton LinkedIn, ton GitHub ou un lien vers ton CV.
+        </p>
+      </div>
+      <a href="mailto:tonmail@example.com" class="btn btn-primary">
+        Envoyer un message
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
