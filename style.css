@@ -42,8 +42,7 @@ body {
 }
 
 .hero {
-  min-height: 100vh;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .navbar {
@@ -90,9 +89,9 @@ body {
 .hero-content {
   display: grid;
   grid-template-columns: 1.2fr 0.9fr;
-  gap: 50px;
-  align-items: center;
-  padding-top: 70px;
+  gap: 40px;
+  align-items: start;
+  padding-top: 35px;
 }
 
 .badge {
@@ -198,7 +197,7 @@ body {
 }
 
 .section {
-  padding: 88px 0 20px;
+  padding: 45px 0 20px;
 }
 
 .section-title {
@@ -506,19 +505,4 @@ body {
     font-size: 0.95rem;
     line-height: 1.7;
   }
-}
-.hero {
-  padding-bottom: 20px;
-}
-
-.hero-content {
-  display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  gap: 40px;
-  align-items: start;
-  padding-top: 35px;
-}
-
-.section {
-  padding: 45px 0 20px;
 }
