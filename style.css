@@ -507,3 +507,18 @@ body {
     line-height: 1.7;
   }
 }
+.hero {
+  padding-bottom: 20px;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 40px;
+  align-items: start;
+  padding-top: 35px;
+}
+
+.section {
+  padding: 45px 0 20px;
+}
