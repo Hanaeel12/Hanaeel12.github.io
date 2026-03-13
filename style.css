@@ -93,15 +93,20 @@ body {
   cursor: pointer;
 }
 
+/* Structure principale */
 main {
-  padding-top: 18px;
+  padding-top: 0;
 }
 
 .intro-section {
-  padding: 35px 0 25px;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  padding: 30px 0 10px;
 }
 
 .photo-layout {
+  width: 100%;
   display: grid;
   grid-template-columns: 1.25fr 0.75fr;
   gap: 50px;
@@ -176,7 +181,7 @@ main {
   background: white;
 }
 
-/* Photo ronde */
+/* Photo */
 .photo-side {
   display: flex;
   justify-content: center;
@@ -201,8 +206,9 @@ main {
   background: #eaf4fb;
 }
 
+/* Sections */
 .section {
-  padding: 55px 0 20px;
+  padding: 35px 0 20px;
 }
 
 .section-title {
@@ -215,6 +221,7 @@ main {
   color: var(--title);
 }
 
+/* Compétences */
 .skills {
   display: flex;
   flex-wrap: wrap;
@@ -230,6 +237,7 @@ main {
   font-weight: 600;
 }
 
+/* Cards / projets */
 .card,
 .project-card,
 .footer-box {
@@ -299,7 +307,11 @@ main {
   left: 48px;
   width: 4px;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(124, 196, 255, 0.55), rgba(143, 211, 193, 0.55));
+  background: linear-gradient(
+    to bottom,
+    rgba(124, 196, 255, 0.55),
+    rgba(143, 211, 193, 0.55)
+  );
   border-radius: 20px;
 }
 
@@ -359,6 +371,7 @@ main {
   font-size: 1.04rem;
 }
 
+/* Footer */
 .footer {
   padding: 70px 0 35px;
 }
@@ -379,6 +392,7 @@ main {
   padding-bottom: 10px;
 }
 
+/* Animation */
 .reveal {
   opacity: 0;
   transform: translateY(34px);
@@ -390,6 +404,7 @@ main {
   transform: translateY(0);
 }
 
+/* Responsive */
 @media (max-width: 992px) {
   .photo-layout,
   .projects-grid {
@@ -398,6 +413,11 @@ main {
 
   .photo-side {
     order: -1;
+  }
+
+  .intro-section {
+    min-height: auto;
+    padding: 40px 0 15px;
   }
 
   .intro-text h1 {
