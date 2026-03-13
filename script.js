@@ -29,3 +29,21 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
+const introSection = document.querySelector(".intro-section");
+const mouseLight = document.querySelector(".mouse-light");
+
+if (introSection && mouseLight) {
+  introSection.addEventListener("mousemove", (e) => {
+    const rect = introSection.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    mouseLight.style.left = `${x}px`;
+    mouseLight.style.top = `${y}px`;
+  });
+
+  introSection.addEventListener("mouseleave", () => {
+    mouseLight.style.left = "60%";
+    mouseLight.style.top = "40%";
+  });
+}
