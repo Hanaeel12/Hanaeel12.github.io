@@ -538,3 +538,174 @@ main {
     height: 180px;
   }
 }
+/* Section À propos animée */
+.intro-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.intro-grid {
+  position: relative;
+  z-index: 3;
+}
+
+.topo-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.topo-line {
+  position: absolute;
+  border: 1.5px solid rgba(102, 183, 220, 0.18);
+  border-radius: 48% 52% 44% 56% / 58% 42% 58% 42%;
+  animation: floatTopo 14s ease-in-out infinite;
+}
+
+.line-1 {
+  width: 420px;
+  height: 220px;
+  top: 8%;
+  left: -4%;
+  transform: rotate(-8deg);
+  animation-delay: 0s;
+}
+
+.line-2 {
+  width: 520px;
+  height: 300px;
+  top: 18%;
+  left: 12%;
+  transform: rotate(6deg);
+  animation-delay: 2s;
+}
+
+.line-3 {
+  width: 560px;
+  height: 280px;
+  top: 38%;
+  left: 35%;
+  transform: rotate(-10deg);
+  animation-delay: 4s;
+}
+
+.line-4 {
+  width: 420px;
+  height: 220px;
+  top: 5%;
+  right: 4%;
+  transform: rotate(12deg);
+  animation-delay: 1s;
+}
+
+.line-5 {
+  width: 500px;
+  height: 260px;
+  bottom: 0;
+  right: 12%;
+  transform: rotate(-6deg);
+  animation-delay: 3s;
+}
+
+.glow-point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(87, 196, 255, 1) 0%, rgba(87, 196, 255, 0.2) 60%, rgba(87, 196, 255, 0) 100%);
+  box-shadow: 0 0 18px rgba(87, 196, 255, 0.35);
+  animation: pulsePoint 4s ease-in-out infinite;
+}
+
+.point-1 {
+  top: 22%;
+  left: 18%;
+  animation-delay: 0s;
+}
+
+.point-2 {
+  top: 30%;
+  right: 22%;
+  animation-delay: 1.3s;
+}
+
+.point-3 {
+  bottom: 26%;
+  left: 42%;
+  animation-delay: 2.2s;
+}
+
+.point-4 {
+  bottom: 18%;
+  right: 14%;
+  animation-delay: 0.8s;
+}
+
+.mouse-light {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 196, 255, 0.18) 0%, rgba(143, 211, 193, 0.10) 40%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(12px);
+  pointer-events: none;
+  z-index: 2;
+  left: 60%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  transition: left 0.18s ease, top 0.18s ease;
+}
+
+/* Un peu plus de présence à la photo */
+.photo-frame {
+  position: relative;
+}
+
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 196, 255, 0.16), rgba(143, 211, 193, 0.04), transparent 72%);
+  z-index: -1;
+  animation: haloPulse 5s ease-in-out infinite;
+}
+
+@keyframes floatTopo {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes pulsePoint {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 1;
+  }
+}
+
+@keyframes haloPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
