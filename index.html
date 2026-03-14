@@ -74,53 +74,59 @@
         <p>Parcours</p>
         <h2>Mon parcours académique et professionnel</h2>
       </div>
-
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <span>2025</span>
+    
+      <div class="parcours-layout">
+        <div class="timeline parcours-timeline">
+          <div class="timeline-item parcours-item active" data-location="paris8">
+            <div class="timeline-marker">
+              <span>2025</span>
+            </div>
+            <div class="timeline-body">
+              <h3>Université Paris 8</h3>
+              <h4>Alternance chez Enedis</h4>
+              <p>
+                Actuellement en Master 2 en Géomatique, Géodécisionnel, Géomarketing et Multimédia,
+                et en alternance au sein de l’agence cartographie de la Direction Île-de-France Est d’Enedis.
+                Contribution à des projets SIG orientés analyse spatiale, cartographie web,
+                structuration de données et automatisation de traitements géographiques.
+              </p>
+            </div>
           </div>
-          <div class="timeline-body">
-            <h3>Université Paris 8</h3>
-            <h4>Alternance chez Enedis</h4>
-            <p>
-              Actuellement en Master 2 en Géomatique, Géodécisionnel, Géomarketing et Multimédia,
-              et en alternance au sein de l’agence cartographie de la Direction Île-de-France Est d’Enedis.
-              Contribution à des projets SIG orientés analyse spatiale, cartographie web,
-              structuration de données et automatisation de traitements géographiques.
-            </p>
+    
+          <div class="timeline-item parcours-item" data-location="orleans">
+            <div class="timeline-marker">
+              <span>2024</span>
+            </div>
+            <div class="timeline-body">
+              <h3>Université d'Orléans</h3>
+              <h4>Stage au sein de la Communauté de communes Terres des Confluences</h4>
+              <p>
+                Licence professionnelle en topographie, cartographie et SIG.
+                Développement de compétences en SIG, bases de données spatiales et représentation cartographique.
+                Stage centré sur la gestion de la base de données de l’assainissement non collectif.
+              </p>
+            </div>
+          </div>
+    
+          <div class="timeline-item parcours-item" data-location="meknes">
+            <div class="timeline-marker">
+              <span>Avant</span>
+            </div>
+            <div class="timeline-body">
+              <h3>ISGRT de Meknès</h3>
+              <h4>Diplôme de technicien spécialisé en topographie</h4>
+              <p>
+                Après l’obtention d’un baccalauréat scientifique, intégration de l’ISGRT de Meknès
+                pour préparer le diplôme de technicien spécialisé en topographie. Formation axée sur
+                la topographie, les méthodes d’acquisition de données terrain et l’aménagement du territoire,
+                enrichie par plusieurs stages professionnels.
+              </p>
+            </div>
           </div>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <span>2024</span>
-          </div>
-          <div class="timeline-body">
-            <h3>Université d'Orléans</h3>
-            <h4>Stage au sein de la Communauté de communes Terres des Confluences</h4>
-            <p>
-              Licence professionnelle en topographie, cartographie et SIG.
-              Développement de compétences en SIG, bases de données spatiales et représentation cartographique.
-              Stage centré sur la gestion de la base de données de l’assainissement non collectif.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <span>Avant</span>
-          </div>
-          <div class="timeline-body">
-            <h3>ISGRT de Meknès</h3>
-            <h4>Diplôme de technicien spécialisé en topographie</h4>
-            <p>
-              Après l’obtention d’un baccalauréat scientifique, intégration de l’ISGRT de Meknès
-              pour préparer le diplôme de technicien spécialisé en topographie. Formation axée sur
-              la topographie, les méthodes d’acquisition de données terrain et l’aménagement du territoire,
-              enrichie par plusieurs stages professionnels.
-            </p>
-          </div>
+    
+        <div class="map-sticky">
+          <div id="parcours-map"></div>
         </div>
       </div>
     </section>
