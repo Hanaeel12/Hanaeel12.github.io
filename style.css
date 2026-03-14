@@ -1282,3 +1282,12 @@ main {
     height: 160px !important;
   }
 }
+@media (max-width: 992px) {
+  .map-sticky {
+    display: none !important;
+  }
+
+  #parcours-map {
+    display: none !important;
+  }
+}
