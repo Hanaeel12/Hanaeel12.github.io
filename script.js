@@ -188,26 +188,52 @@ if (mapContainer && typeof L !== "undefined") {
     scrollWheelZoom: true
   }).setView([46.8, 2.5], 5);
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  /* Fonds de carte */
+  const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap"
+  });
+
+  const cartoLight = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: "&copy; OpenStreetMap &copy; CARTO"
+  });
+
+  const esriWorldImagery = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+      attribution: "Tiles &copy; Esri"
+    }
+  );
+
+  /* Fond affiché par défaut */
+  esriWorldImagery.addTo(parcoursMap);
+
+  /* Contrôle de couches */
+  const baseMaps = {
+    "Orthophoto": esriWorldImagery,
+    "Plan OSM": osm,
+    "Fond clair": cartoLight
+  };
+
+  L.control.layers(baseMaps, null, {
+    collapsed: false
   }).addTo(parcoursMap);
 
   const locations = {
     paris8: {
       coords: [48.947, 2.363],
-      zoom: 14,
+      zoom: 16,
       title: "Université Paris 8",
       text: "Master Géomatique • Alternance chez Enedis"
     },
     orleans: {
       coords: [47.843, 1.934],
-      zoom: 13,
+      zoom: 14,
       title: "Université d'Orléans",
       text: "Licence pro topographie, cartographie et SIG"
     },
     meknes: {
       coords: [33.8935, -5.5473],
-      zoom: 12,
+      zoom: 13,
       title: "ISGRT de Meknès",
       text: "Technicien spécialisé en topographie"
     }
@@ -247,10 +273,7 @@ if (mapContainer && typeof L !== "undefined") {
       item.classList.remove("active");
     });
 
-    const activeItem = document.querySelector(
-      `.parcours-item[data-location="${key}"]`
-    );
-
+    const activeItem = document.querySelector(`.parcours-item[data-location="${key}"]`);
     if (activeItem) {
       activeItem.classList.add("active");
     }
