@@ -1310,3 +1310,62 @@ main {
     overflow: hidden !important;
   }
 }
+/* ===== SWITCH PARCOURS ===== */
+.parcours-switch {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0 34px;
+  flex-wrap: wrap;
+}
+
+.switch-btn {
+  padding: 10px 18px;
+  border: 1px solid rgba(133, 168, 201, 0.22);
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #15304b;
+  transition: 0.25s ease;
+}
+
+.switch-btn:hover {
+  transform: translateY(-2px);
+}
+
+.switch-btn.active {
+  background: linear-gradient(135deg, #8bcfff, #9fdfcf);
+  color: #17415f;
+  box-shadow: 0 10px 24px rgba(74, 168, 240, 0.12);
+}
+
+.parcours-panel {
+  display: none;
+}
+
+.parcours-panel.active {
+  display: block;
+}
+
+/* Masquer la deuxième carte inactive */
+#professionnel .map-sticky,
+#academique .map-sticky {
+  display: block;
+}
+
+@media (max-width: 992px) {
+  .parcours-switch {
+    margin: 14px 0 26px;
+  }
+
+  .switch-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  #parcours-map,
+  #parcours-map-alt,
+  .map-sticky {
+    display: none !important;
+  }
+}
