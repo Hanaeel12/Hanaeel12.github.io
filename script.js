@@ -345,68 +345,122 @@ focusAcademicLocation("paris8");
 /* =========================
    CARTE PROFESSIONNELLE
 ========================= */
-
 const professionalMapContainer = document.getElementById("parcours-map-alt");
 
-if(professionalMapContainer){
+if (professionalMapContainer) {
+  const professionalMap = L.map("parcours-map-alt", {
+    zoomControl: true,
+    scrollWheelZoom: true
+  }).setView([46.8, 2.5], 5);
 
-const professionalMap = L.map("parcours-map-alt",{zoomControl:true}).setView([46.8,2.5],5);
+  window.professionalMap = professionalMap;
 
-window.professionalMap = professionalMap;
+  const osm2 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap"
+  });
 
-L.tileLayer(
-"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-{ attribution:"Esri"}
-).addTo(professionalMap);
+  const cartoLight2 = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    { attribution: "&copy; OpenStreetMap &copy; CARTO" }
+  );
 
-const professionalLocations = {
+  const esriWorldImagery2 = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    { attribution: "Tiles &copy; Esri" }
+  );
 
-enedis:{
-coords:[48.8386,2.5579],
-zoom:15,
-title:"Enedis",
-text:"Alternante géomaticienne"
-},
+  /* fond par défaut */
+  esriWorldImagery2.addTo(professionalMap);
 
-terresconfluences:{
-coords:[44.0408,1.1078],
-zoom:14,
-title:"Terres des Confluences",
-text:"Stage SIG"
-},
+  /* choix du fond */
+  const baseMapsProfessional = {
+    "Orthophoto": esriWorldImagery2,
+    "Plan OSM": osm2,
+    "Fond clair": cartoLight2
+  };
 
-terrain:{
-coords:[33.8935,-5.5473],
-zoom:12,
-title:"Expériences terrain",
-text:"Topographie"
-}
+  L.control.layers(baseMapsProfessional, null, {
+    collapsed: false
+  }).addTo(professionalMap);
 
-};
+  /* ICI TU MODIFIERAS PLUS TARD LES COORDONNÉES */
+  const professionalLocations = {
+    enedis: {
+      coords: [48.8386, 2.5579],
+      zoom: 15,
+      title: "Enedis",
+      text: "Alternante géomaticienne • Noisy-le-Grand"
+    },
 
-Object.keys(professionalLocations).forEach(key=>{
+    terresconfluences: {
+      coords: [44.0408, 1.1078],
+      zoom: 14,
+      title: "Terres des Confluences",
+      text: "Stage SIG • Castelsarrasin"
+    },
 
-const loc = professionalLocations[key];
+    terrain: {
+      coords: [33.8935, -5.5473],
+      zoom: 12,
+      title: "Expériences terrain",
+      text: "Topographie"
+    }
+  };
 
-L.marker(loc.coords)
-.addTo(professionalMap)
-.bindPopup(`<div class="map-popup"><h3>${loc.title}</h3><p>${loc.text}</p></div>`);
+  const professionalMarkers = {};
 
-});
+  Object.keys(professionalLocations).forEach((key) => {
+    const loc = professionalLocations[key];
 
-focusProfessionalLocation = function(key){
+    const popupContent = `
+      <div class="map-popup">
+        <h3>${loc.title}</h3>
+        <p>${loc.text}</p>
+      </div>
+    `;
 
-const loc = professionalLocations[key];
+    professionalMarkers[key] = L.marker(loc.coords)
+      .addTo(professionalMap)
+      .bindPopup(popupContent, {
+        maxWidth: 200,
+        minWidth: 120
+      });
+  });
 
-if(!loc) return;
+  focusProfessionalLocation = function (key) {
+    const loc = professionalLocations[key];
+    if (!loc) return;
 
-professionalMap.flyTo(loc.coords,loc.zoom,{
-animate:true,
-duration:2.6
-});
+    professionalMap.closePopup();
 
-};
+    professionalMap.flyTo(loc.coords, loc.zoom, {
+      animate: true,
+      duration: 3.2,
+      easeLinearity: 0.25
+    });
 
-}
+    document
+      .querySelectorAll('.parcours-item[data-group="professionnel"]')
+      .forEach((item) => item.classList.remove("active"));
 
+    const activeItem = document.querySelector(
+      `.parcours-item[data-group="professionnel"][data-location="${key}"]`
+    );
+
+    if (activeItem) {
+      activeItem.classList.add("active");
+    }
+  };
+
+  document
+    .querySelectorAll('.parcours-item[data-group="professionnel"]')
+    .forEach((item) => {
+      item.addEventListener("click", () => {
+        focusProfessionalLocation(item.dataset.location);
+      });
+    });
+
+  window.addEventListener("resize", () => {
+    professionalMap.invalidateSize();
+  });
 }
