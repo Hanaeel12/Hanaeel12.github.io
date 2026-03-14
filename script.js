@@ -251,10 +251,12 @@ if (mapContainer && typeof L !== "undefined") {
       </div>
     `;
 
-    markers[key] = L.marker(loc.coords)
-      .addTo(parcoursMap)
-      .bindPopup(popupContent);
-  });
+  markers[key] = L.marker(loc.coords)
+    .addTo(parcoursMap)
+    .bindPopup(popupContent,{
+        maxWidth: 200,
+        minWidth: 120
+    });
 
   function focusLocation(key) {
     const loc = locations[key];
