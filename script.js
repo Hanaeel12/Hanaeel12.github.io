@@ -29,25 +29,10 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
-const introSection = document.querySelector(".intro-section");
-const mouseLight = document.querySelector(".mouse-light");
 
-if (introSection && mouseLight) {
-  introSection.addEventListener("mousemove", (e) => {
-    const rect = introSection.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    mouseLight.style.left = `${x}px`;
-    mouseLight.style.top = `${y}px`;
-  });
-
-  introSection.addEventListener("mouseleave", () => {
-    mouseLight.style.left = "60%";
-    mouseLight.style.top = "40%";
-  });
-}
-
+/* =========================
+   HERO CANVAS
+========================= */
 const heroSection = document.querySelector(".intro-section");
 const heroCanvas = document.getElementById("hero-canvas");
 
@@ -69,12 +54,6 @@ if (heroSection && heroCanvas) {
 
   class Particle {
     constructor() {
-      this.reset();
-      this.x = Math.random() * heroCanvas.width;
-      this.y = Math.random() * heroCanvas.height;
-    }
-
-    reset() {
       this.size = Math.random() * 2.2 + 1.2;
       this.x = Math.random() * heroCanvas.width;
       this.y = Math.random() * heroCanvas.height;
@@ -148,7 +127,15 @@ if (heroSection && heroCanvas) {
   function drawMouseGlow() {
     if (mouse.x === null || mouse.y === null) return;
 
-    const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
+    const gradient = ctx.createRadialGradient(
+      mouse.x,
+      mouse.y,
+      0,
+      mouse.x,
+      mouse.y,
+      180
+    );
+
     gradient.addColorStop(0, "rgba(124, 196, 255, 0.12)");
     gradient.addColorStop(0.4, "rgba(143, 211, 193, 0.07)");
     gradient.addColorStop(1, "rgba(255,255,255,0)");
@@ -170,7 +157,6 @@ if (heroSection && heroCanvas) {
     });
 
     drawConnections();
-
     requestAnimationFrame(animateCanvas);
   }
 
@@ -191,9 +177,12 @@ if (heroSection && heroCanvas) {
   animateCanvas();
 }
 
+/* =========================
+   CARTE PARCOURS LEAFLET
+========================= */
 const mapContainer = document.getElementById("parcours-map");
 
-if (mapContainer) {
+if (mapContainer && typeof L !== "undefined") {
   const parcoursMap = L.map("parcours-map", {
     zoomControl: true,
     scrollWheelZoom: true
@@ -208,22 +197,19 @@ if (mapContainer) {
       coords: [48.947, 2.363],
       zoom: 14,
       title: "Université Paris 8",
-      text: "Master Géomatique • Alternance chez Enedis",
-      image: "paris8.jpg"
+      text: "Master Géomatique • Alternance chez Enedis"
     },
     orleans: {
       coords: [47.843, 1.934],
       zoom: 13,
       title: "Université d'Orléans",
-      text: "Licence pro topographie, cartographie et SIG",
-      image: "orleans.jpg"
+      text: "Licence pro topographie, cartographie et SIG"
     },
     meknes: {
       coords: [33.8935, -5.5473],
       zoom: 12,
       title: "ISGRT de Meknès",
-      text: "Technicien spécialisé en topographie",
-      image: "meknes.jpg"
+      text: "Technicien spécialisé en topographie"
     }
   };
 
@@ -236,7 +222,6 @@ if (mapContainer) {
       <div class="map-popup">
         <h3>${loc.title}</h3>
         <p>${loc.text}</p>
-        <img src="${loc.image}" alt="${loc.title}">
       </div>
     `;
 
@@ -262,7 +247,10 @@ if (mapContainer) {
       item.classList.remove("active");
     });
 
-    const activeItem = document.querySelector(`.parcours-item[data-location="${key}"]`);
+    const activeItem = document.querySelector(
+      `.parcours-item[data-location="${key}"]`
+    );
+
     if (activeItem) {
       activeItem.classList.add("active");
     }
@@ -275,5 +263,14 @@ if (mapContainer) {
     });
   });
 
-  focusLocation("paris8");
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      parcoursMap.invalidateSize();
+      focusLocation("paris8");
+    }, 300);
+  });
+
+  window.addEventListener("resize", () => {
+    parcoursMap.invalidateSize();
+  });
 }
