@@ -460,3 +460,52 @@ if (window.innerWidth <= 992) {
     block.style.display = "none";
   });
 }
+
+/* =========================
+   SWITCH PROJETS
+========================= */
+
+const projButtons = document.querySelectorAll(".proj-btn");
+const projPanels = document.querySelectorAll(".projets-panel");
+
+projButtons.forEach(btn=>{
+btn.addEventListener("click",()=>{
+
+projButtons.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+
+projPanels.forEach(p=>p.classList.remove("active"));
+
+document.getElementById(btn.dataset.target).classList.add("active");
+
+});
+});
+
+
+/* =========================
+   PREVIEW PROJET
+========================= */
+
+const preview = document.getElementById("project-preview");
+
+document.querySelectorAll(".projet-item").forEach(card=>{
+
+card.addEventListener("click",()=>{
+
+const img = card.dataset.image;
+const desc = card.dataset.description;
+
+preview.innerHTML = `
+<div style="position:relative">
+<img src="${img}">
+<div class="project-overlay">
+<p>${desc}</p>
+</div>
+</div>
+`;
+
+preview.scrollIntoView({behavior:"smooth"});
+
+});
+
+});
