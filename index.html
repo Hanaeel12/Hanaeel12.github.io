@@ -74,59 +74,117 @@
         <p>Parcours</p>
         <h2>Mon parcours académique et professionnel</h2>
       </div>
-
-      <div class="parcours-layout">
-        <div class="timeline parcours-timeline">
-          <div class="timeline-item parcours-item active" data-location="paris8">
-            <div class="timeline-marker">
-              <span>2025</span>
+    
+      <div class="parcours-switch">
+        <button class="switch-btn active" data-target="academique">Académique</button>
+        <button class="switch-btn" data-target="professionnel">Professionnel</button>
+      </div>
+    
+      <!-- PANEL ACADÉMIQUE -->
+      <div id="academique" class="parcours-panel active">
+        <div class="parcours-layout">
+          <div class="timeline parcours-timeline">
+            <div class="timeline-item parcours-item active" data-location="paris8" data-group="academique">
+              <div class="timeline-marker">
+                <span>2025</span>
+              </div>
+              <div class="timeline-body">
+                <h3>Université Paris 8</h3>
+                <h4>Master 2 • Géomatique</h4>
+                <p>
+                  Actuellement en Master 2 en Géomatique, Géodécisionnel, Géomarketing et Multimédia,
+                  avec approfondissement des problématiques d’analyse spatiale, de cartographie
+                  et de valorisation des données territoriales.
+                </p>
+              </div>
             </div>
-            <div class="timeline-body">
-              <h3>Université Paris 8</h3>
-              <h4>Alternance chez Enedis</h4>
-              <p>
-                Actuellement en Master 2 en Géomatique, Géodécisionnel, Géomarketing et Multimédia,
-                et en alternance au sein de l’agence cartographie de la Direction Île-de-France Est d’Enedis.
-                Contribution à des projets SIG orientés analyse spatiale, cartographie web,
-                structuration de données et automatisation de traitements géographiques.
-              </p>
+    
+            <div class="timeline-item parcours-item" data-location="orleans" data-group="academique">
+              <div class="timeline-marker">
+                <span>2024</span>
+              </div>
+              <div class="timeline-body">
+                <h3>Université d'Orléans</h3>
+                <h4>Licence professionnelle • Topographie, cartographie et SIG</h4>
+                <p>
+                  Formation orientée topographie, cartographie et systèmes d’information géographique,
+                  avec développement de compétences en bases de données spatiales et représentation cartographique.
+                </p>
+              </div>
+            </div>
+    
+            <div class="timeline-item parcours-item" data-location="meknes" data-group="academique">
+              <div class="timeline-marker">
+                <span>Avant</span>
+              </div>
+              <div class="timeline-body">
+                <h3>ISGRT de Meknès</h3>
+                <h4>Diplôme de technicien spécialisé en topographie</h4>
+                <p>
+                  Formation axée sur la topographie, les méthodes d’acquisition de données terrain
+                  et l’aménagement du territoire, enrichie par plusieurs expériences de terrain.
+                </p>
+              </div>
             </div>
           </div>
-
-          <div class="timeline-item parcours-item" data-location="orleans">
-            <div class="timeline-marker">
-              <span>2024</span>
-            </div>
-            <div class="timeline-body">
-              <h3>Université d'Orléans</h3>
-              <h4>Stage au sein de la Communauté de communes Terres des Confluences</h4>
-              <p>
-                Licence professionnelle en topographie, cartographie et SIG.
-                Développement de compétences en SIG, bases de données spatiales et représentation cartographique.
-                Stage centré sur la gestion de la base de données de l’assainissement non collectif.
-              </p>
-            </div>
-          </div>
-
-          <div class="timeline-item parcours-item" data-location="meknes">
-            <div class="timeline-marker">
-              <span>Avant</span>
-            </div>
-            <div class="timeline-body">
-              <h3>ISGRT de Meknès</h3>
-              <h4>Diplôme de technicien spécialisé en topographie</h4>
-              <p>
-                Après l’obtention d’un baccalauréat scientifique, intégration de l’ISGRT de Meknès
-                pour préparer le diplôme de technicien spécialisé en topographie. Formation axée sur
-                la topographie, les méthodes d’acquisition de données terrain et l’aménagement du territoire,
-                enrichie par plusieurs stages professionnels.
-              </p>
-            </div>
+    
+          <div class="map-sticky">
+            <div id="parcours-map"></div>
           </div>
         </div>
-
-        <div class="map-sticky">
-          <div id="parcours-map"></div>
+      </div>
+    
+      <!-- PANEL PROFESSIONNEL -->
+      <div id="professionnel" class="parcours-panel">
+        <div class="parcours-layout">
+          <div class="timeline parcours-timeline">
+            <div class="timeline-item parcours-item" data-location="enedis" data-group="professionnel">
+              <div class="timeline-marker">
+                <span>2024</span>
+              </div>
+              <div class="timeline-body">
+                <h3>Enedis</h3>
+                <h4>Alternante géomaticienne • Noisy-le-Grand</h4>
+                <p>
+                  Participation à des projets SIG orientés analyse spatiale, cartographie web,
+                  structuration de données, automatisation de traitements géographiques
+                  et réponse aux besoins métier.
+                </p>
+              </div>
+            </div>
+    
+            <div class="timeline-item parcours-item" data-location="terresconfluences" data-group="professionnel">
+              <div class="timeline-marker">
+                <span>2024</span>
+              </div>
+              <div class="timeline-body">
+                <h3>Communauté de communes Terres des Confluences</h3>
+                <h4>Stage SIG • Castelsarrasin</h4>
+                <p>
+                  Travail autour de la gestion de données territoriales et de la structuration
+                  d’informations géographiques dans un contexte d’administration publique locale.
+                </p>
+              </div>
+            </div>
+    
+            <div class="timeline-item parcours-item" data-location="terrain" data-group="professionnel">
+              <div class="timeline-marker">
+                <span>Avant</span>
+              </div>
+              <div class="timeline-body">
+                <h3>Expériences de terrain en topographie</h3>
+                <h4>Stages et missions techniques</h4>
+                <p>
+                  Premières expériences professionnelles en topographie, acquisition terrain
+                  et manipulation de données techniques liées à l’aménagement du territoire.
+                </p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="map-sticky">
+            <div id="parcours-map-alt"></div>
+          </div>
         </div>
       </div>
     </section>
