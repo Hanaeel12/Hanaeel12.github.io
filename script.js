@@ -36,41 +36,46 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 window.addEventListener("resize", revealOnScroll);
 
-/* =========================
-   HERO CANVAS PARTICLES
-========================= */
-const heroSection = document.querySelector(".intro-section");
-const heroCanvas = document.getElementById("hero-canvas");
 
-if (heroSection && heroCanvas) {
-  const ctx = heroCanvas.getContext("2d");
+/* =========================
+   GLOBAL CANVAS PARTICLES
+========================= */
+const siteCanvas = document.getElementById("site-bg-canvas");
+
+if (siteCanvas) {
+  const ctx = siteCanvas.getContext("2d");
+
   let particles = [];
-  let mouse = { x: null, y: null, radius: 140 };
+  let mouse = {
+    x: null,
+    y: null,
+    radius: 150
+  };
 
   function resizeCanvas() {
-    heroCanvas.width = heroSection.offsetWidth;
-    heroCanvas.height = heroSection.offsetHeight;
+    siteCanvas.width = window.innerWidth;
+    siteCanvas.height = window.innerHeight;
     initParticles();
   }
 
   class Particle {
     constructor() {
       this.size = Math.random() * 2 + 1;
-      this.x = Math.random() * heroCanvas.width;
-      this.y = Math.random() * heroCanvas.height;
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = (Math.random() - 0.5) * 0.4;
-      this.alpha = Math.random() * 0.5 + 0.3;
+      this.x = Math.random() * siteCanvas.width;
+      this.y = Math.random() * siteCanvas.height;
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = (Math.random() - 0.5) * 0.35;
+      this.alpha = Math.random() * 0.45 + 0.2;
     }
 
     update() {
       this.x += this.vx;
       this.y += this.vy;
 
-      if (this.x < 0 || this.x > heroCanvas.width) this.vx *= -1;
-      if (this.y < 0 || this.y > heroCanvas.height) this.vy *= -1;
+      if (this.x < 0 || this.x > siteCanvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > siteCanvas.height) this.vy *= -1;
 
-      if (mouse.x !== null) {
+      if (mouse.x !== null && mouse.y !== null) {
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -79,8 +84,8 @@ if (heroSection && heroCanvas) {
           const angle = Math.atan2(dy, dx);
           const force = (mouse.radius - dist) / mouse.radius;
 
-          this.x += Math.cos(angle) * force * 1.2;
-          this.y += Math.sin(angle) * force * 1.2;
+          this.x += Math.cos(angle) * force * 1.1;
+          this.y += Math.sin(angle) * force * 1.1;
         }
       }
     }
@@ -96,11 +101,11 @@ if (heroSection && heroCanvas) {
   function initParticles() {
     particles = [];
 
-    let count = Math.floor(heroCanvas.width / 18);
-    count = Math.max(20, Math.min(count, 90));
+    let count = Math.floor(window.innerWidth / 16);
+    count = Math.max(45, Math.min(count, 120));
 
     if (window.innerWidth < 768) {
-      count = 18;
+      count = 30;
     }
 
     for (let i = 0; i < count; i++) {
@@ -115,11 +120,11 @@ if (heroSection && heroCanvas) {
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 130) {
-          const opacity = 1 - dist / 130;
+        if (dist < 140) {
+          const opacity = 1 - dist / 140;
 
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(120,200,255,${opacity * 0.15})`;
+          ctx.strokeStyle = `rgba(120,200,255,${opacity * 0.12})`;
           ctx.lineWidth = 1;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
@@ -130,7 +135,7 @@ if (heroSection && heroCanvas) {
   }
 
   function animateCanvas() {
-    ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+    ctx.clearRect(0, 0, siteCanvas.width, siteCanvas.height);
 
     particles.forEach((p) => {
       p.update();
@@ -141,18 +146,17 @@ if (heroSection && heroCanvas) {
     requestAnimationFrame(animateCanvas);
   }
 
-  heroSection.addEventListener("mousemove", (e) => {
-    const rect = heroSection.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
   });
 
-  heroSection.addEventListener("mouseleave", () => {
+  window.addEventListener("mouseleave", () => {
     mouse.x = null;
     mouse.y = null;
   });
 
-  heroSection.addEventListener("touchstart", () => {
+  window.addEventListener("touchstart", () => {
     mouse.x = null;
     mouse.y = null;
   });
