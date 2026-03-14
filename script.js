@@ -190,3 +190,90 @@ if (heroSection && heroCanvas) {
   resizeCanvas();
   animateCanvas();
 }
+
+const mapContainer = document.getElementById("parcours-map");
+
+if (mapContainer) {
+  const parcoursMap = L.map("parcours-map", {
+    zoomControl: true,
+    scrollWheelZoom: true
+  }).setView([46.8, 2.5], 5);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap"
+  }).addTo(parcoursMap);
+
+  const locations = {
+    paris8: {
+      coords: [48.947, 2.363],
+      zoom: 14,
+      title: "Université Paris 8",
+      text: "Master Géomatique • Alternance chez Enedis",
+      image: "paris8.jpg"
+    },
+    orleans: {
+      coords: [47.843, 1.934],
+      zoom: 13,
+      title: "Université d'Orléans",
+      text: "Licence pro topographie, cartographie et SIG",
+      image: "orleans.jpg"
+    },
+    meknes: {
+      coords: [33.8935, -5.5473],
+      zoom: 12,
+      title: "ISGRT de Meknès",
+      text: "Technicien spécialisé en topographie",
+      image: "meknes.jpg"
+    }
+  };
+
+  const markers = {};
+
+  Object.keys(locations).forEach((key) => {
+    const loc = locations[key];
+
+    const popupContent = `
+      <div class="map-popup">
+        <h3>${loc.title}</h3>
+        <p>${loc.text}</p>
+        <img src="${loc.image}" alt="${loc.title}">
+      </div>
+    `;
+
+    markers[key] = L.marker(loc.coords)
+      .addTo(parcoursMap)
+      .bindPopup(popupContent);
+  });
+
+  function focusLocation(key) {
+    const loc = locations[key];
+    if (!loc) return;
+
+    parcoursMap.flyTo(loc.coords, loc.zoom, {
+      animate: true,
+      duration: 2
+    });
+
+    setTimeout(() => {
+      markers[key].openPopup();
+    }, 900);
+
+    document.querySelectorAll(".parcours-item").forEach((item) => {
+      item.classList.remove("active");
+    });
+
+    const activeItem = document.querySelector(`.parcours-item[data-location="${key}"]`);
+    if (activeItem) {
+      activeItem.classList.add("active");
+    }
+  }
+
+  document.querySelectorAll(".parcours-item").forEach((item) => {
+    item.addEventListener("click", () => {
+      const key = item.dataset.location;
+      focusLocation(key);
+    });
+  });
+
+  focusLocation("paris8");
+}
