@@ -36,7 +36,6 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 window.addEventListener("resize", revealOnScroll);
 
-
 /* =========================
    GLOBAL CANVAS PARTICLES
 ========================= */
@@ -58,15 +57,15 @@ if (siteCanvas) {
     initParticles();
   }
 
-   class Particle {
-     constructor() {
-       this.size = Math.random() * 2.4 + 1.4;
-       this.x = Math.random() * siteCanvas.width;
-       this.y = Math.random() * siteCanvas.height;
-       this.vx = (Math.random() - 0.5) * 0.4;
-       this.vy = (Math.random() - 0.5) * 0.4;
-       this.alpha = Math.random() * 0.35 + 0.45;
-     }
+  class Particle {
+    constructor() {
+      this.size = Math.random() * 2.4 + 1.4;
+      this.x = Math.random() * siteCanvas.width;
+      this.y = Math.random() * siteCanvas.height;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      this.alpha = Math.random() * 0.35 + 0.45;
+    }
 
     update() {
       this.x += this.vx;
@@ -90,15 +89,15 @@ if (siteCanvas) {
       }
     }
 
-      draw() {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(95,190,255,${this.alpha})`;
-        ctx.shadowColor = "rgba(95,190,255,0.35)";
-        ctx.shadowBlur = 10;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
+    draw() {
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(95,190,255,${this.alpha})`;
+      ctx.shadowColor = "rgba(95,190,255,0.35)";
+      ctx.shadowBlur = 10;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
   }
 
   function initParticles() {
@@ -124,7 +123,7 @@ if (siteCanvas) {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 170) {
-          const opacity = 1 - dist / 140;
+          const opacity = 1 - dist / 170;
 
           ctx.beginPath();
           ctx.strokeStyle = `rgba(120,200,255,${opacity * 0.22})`;
@@ -462,50 +461,52 @@ if (window.innerWidth <= 992) {
 }
 
 /* =========================
-   SWITCH PROJETS
+   SWITCH RÉALISATIONS
 ========================= */
-
 const projButtons = document.querySelectorAll(".proj-btn");
 const projPanels = document.querySelectorAll(".projets-panel");
-
-projButtons.forEach(btn=>{
-btn.addEventListener("click",()=>{
-
-projButtons.forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-
-projPanels.forEach(p=>p.classList.remove("active"));
-
-document.getElementById(btn.dataset.target).classList.add("active");
-
-});
-});
-
-
-/* =========================
-   PREVIEW PROJET
-========================= */
-
 const preview = document.getElementById("project-preview");
 
-document.querySelectorAll(".projet-item").forEach(card=>{
+projButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    projButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
 
-card.addEventListener("click",()=>{
+    projPanels.forEach((panel) => panel.classList.remove("active"));
 
-const img = card.dataset.image;
-const desc = card.dataset.description;
+    const targetPanel = document.getElementById(btn.dataset.target);
+    if (targetPanel) {
+      targetPanel.classList.add("active");
+    }
 
-preview.innerHTML = `
-<div style="position:relative">
-<img src="${img}">
-<div class="project-overlay">
-<p>${desc}</p>
-</div>
-</div>
-`;
-
-preview.scrollIntoView({behavior:"smooth"});
-
+    if (preview) {
+      preview.innerHTML = "";
+    }
+  });
 });
 
+/* =========================
+   APERÇU PROJET
+========================= */
+document.querySelectorAll(".projet-item").forEach((card) => {
+  card.addEventListener("click", () => {
+    const img = card.dataset.image;
+    const desc = card.dataset.description;
+
+    if (!preview) return;
+
+    preview.innerHTML = `
+      <div class="project-preview-card">
+        <img src="${img}" alt="Aperçu du projet">
+        <div class="project-overlay">
+          <p>${desc}</p>
+        </div>
+      </div>
+    `;
+
+    preview.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
 });
