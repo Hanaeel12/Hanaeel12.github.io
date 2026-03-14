@@ -1457,3 +1457,70 @@ body {
 .hero-canvas {
   display: none !important;
 }
+
+
+.realisation-intro{
+margin-top:8px;
+max-width:650px;
+color:var(--muted);
+}
+
+.projets-switch{
+display:flex;
+gap:12px;
+margin:20px 0 30px;
+}
+
+.proj-btn{
+padding:10px 18px;
+border-radius:999px;
+border:1px solid var(--border);
+background:white;
+cursor:pointer;
+font-weight:600;
+}
+
+.proj-btn.active{
+background:linear-gradient(135deg,#8bcfff,#9fdfcf);
+border:none;
+}
+
+.projets-panel{
+display:none;
+}
+
+.projets-panel.active{
+display:block;
+}
+
+.project-preview{
+margin:30px 0;
+display:flex;
+justify-content:center;
+}
+
+.project-preview img{
+max-width:600px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
+position:relative;
+}
+
+.project-overlay{
+position:absolute;
+inset:0;
+background:rgba(20,40,60,0.7);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:30px;
+opacity:0;
+transition:0.3s;
+border-radius:20px;
+}
+
+.project-preview:hover .project-overlay{
+opacity:1;
+}
