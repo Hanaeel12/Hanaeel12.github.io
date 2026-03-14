@@ -187,126 +187,294 @@ if (heroSection && heroCanvas) {
 }
 
 /* =========================
-   CARTE PARCOURS LEAFLET
-   Désactivée sur petit écran
+   SWITCH PARCOURS
 ========================= */
-const mapContainer = document.getElementById("parcours-map");
+const switchButtons = document.querySelectorAll(".switch-btn");
+const panels = document.querySelectorAll(".parcours-panel");
 
-if (mapContainer && typeof L !== "undefined" && window.innerWidth > 992) {
-  const parcoursMap = L.map("parcours-map", {
-    zoomControl: true,
-    scrollWheelZoom: true
-  }).setView([46.8, 2.5], 5);
+switchButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.target;
 
-  const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "&copy; OpenStreetMap"
-  });
+    switchButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
 
-  const cartoLight = L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    { attribution: "&copy; OpenStreetMap &copy; CARTO" }
-  );
+    panels.forEach((panel) => panel.classList.remove("active"));
 
-  const esriWorldImagery = L.tileLayer(
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    { attribution: "Tiles &copy; Esri" }
-  );
-
-  esriWorldImagery.addTo(parcoursMap);
-
-  const baseMaps = {
-    "Orthophoto": esriWorldImagery,
-    "Plan OSM": osm,
-    "Fond clair": cartoLight
-  };
-
-  L.control.layers(baseMaps, null, {
-    collapsed: false
-  }).addTo(parcoursMap);
-
-  const locations = {
-    paris8: {
-      coords: [48.947, 2.363],
-      zoom: 16,
-      title: "Université Paris 8",
-      text: "Master Géomatique • Alternance chez Enedis"
-    },
-    orleans: {
-      coords: [47.843, 1.934],
-      zoom: 14,
-      title: "Université d'Orléans",
-      text: "Licence pro topographie, cartographie et SIG"
-    },
-    meknes: {
-      coords: [33.8935, -5.5473],
-      zoom: 13,
-      title: "ISGRT de Meknès",
-      text: "Technicien spécialisé en topographie"
+    const targetPanel = document.getElementById(target);
+    if (targetPanel) {
+      targetPanel.classList.add("active");
     }
-  };
 
-  const markers = {};
+    if (window.innerWidth > 992) {
+      if (target === "academique") {
+        setTimeout(() => {
+          if (window.academicMap) {
+            window.academicMap.invalidateSize();
+            focusAcademicLocation("paris8");
+          }
+        }, 200);
+      }
 
-  Object.keys(locations).forEach((key) => {
-    const loc = locations[key];
+      if (target === "professionnel") {
+        setTimeout(() => {
+          if (window.professionalMap) {
+            window.professionalMap.invalidateSize();
+            focusProfessionalLocation("enedis");
+          }
+        }, 200);
+      }
+    }
+  });
+});
 
-    const popupContent = `
-      <div class="map-popup">
-        <h3>${loc.title}</h3>
-        <p>${loc.text}</p>
-      </div>
-    `;
+/* =========================
+   CARTE ACADÉMIQUE
+========================= */
+let focusAcademicLocation = () => {};
+let focusProfessionalLocation = () => {};
 
-    markers[key] = L.marker(loc.coords)
-      .addTo(parcoursMap)
-      .bindPopup(popupContent, {
-        maxWidth: 200,
-        minWidth: 120
+if (typeof L !== "undefined" && window.innerWidth > 992) {
+  const academicMapContainer = document.getElementById("parcours-map");
+
+  if (academicMapContainer) {
+    const academicMap = L.map("parcours-map", {
+      zoomControl: true,
+      scrollWheelZoom: true
+    }).setView([46.8, 2.5], 5);
+
+    window.academicMap = academicMap;
+
+    const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap"
+    });
+
+    const cartoLight = L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      { attribution: "&copy; OpenStreetMap &copy; CARTO" }
+    );
+
+    const esriWorldImagery = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      { attribution: "Tiles &copy; Esri" }
+    );
+
+    esriWorldImagery.addTo(academicMap);
+
+    const baseMapsAcademic = {
+      "Orthophoto": esriWorldImagery,
+      "Plan OSM": osm,
+      "Fond clair": cartoLight
+    };
+
+    L.control.layers(baseMapsAcademic, null, { collapsed: false }).addTo(academicMap);
+
+    const academicLocations = {
+      paris8: {
+        coords: [48.947, 2.363],
+        zoom: 16,
+        title: "Université Paris 8",
+        text: "Master 2 • Géomatique"
+      },
+      orleans: {
+        coords: [47.843, 1.934],
+        zoom: 14,
+        title: "Université d'Orléans",
+        text: "Licence professionnelle • Topographie, cartographie et SIG"
+      },
+      meknes: {
+        coords: [33.8935, -5.5473],
+        zoom: 13,
+        title: "ISGRT de Meknès",
+        text: "Technicien spécialisé en topographie"
+      }
+    };
+
+    const academicMarkers = {};
+
+    Object.keys(academicLocations).forEach((key) => {
+      const loc = academicLocations[key];
+
+      const popupContent = `
+        <div class="map-popup">
+          <h3>${loc.title}</h3>
+          <p>${loc.text}</p>
+        </div>
+      `;
+
+      academicMarkers[key] = L.marker(loc.coords)
+        .addTo(academicMap)
+        .bindPopup(popupContent, {
+          maxWidth: 200,
+          minWidth: 120
+        });
+    });
+
+    focusAcademicLocation = function (key) {
+      const loc = academicLocations[key];
+      if (!loc) return;
+
+      academicMap.closePopup();
+
+      academicMap.flyTo(loc.coords, loc.zoom, {
+        animate: true,
+        duration: 3.2,
+        easeLinearity: 0.25
       });
-  });
 
-  function focusLocation(key) {
-    const loc = locations[key];
-    if (!loc) return;
+      document
+        .querySelectorAll('.parcours-item[data-group="academique"]')
+        .forEach((item) => item.classList.remove("active"));
 
-    parcoursMap.closePopup();
+      const activeItem = document.querySelector(
+        `.parcours-item[data-group="academique"][data-location="${key}"]`
+      );
 
-    parcoursMap.flyTo(loc.coords, loc.zoom, {
-      animate: true,
-      duration: 3.8,
-      easeLinearity: 0.25
+      if (activeItem) {
+        activeItem.classList.add("active");
+      }
+    };
+
+    document
+      .querySelectorAll('.parcours-item[data-group="academique"]')
+      .forEach((item) => {
+        item.addEventListener("click", () => {
+          focusAcademicLocation(item.dataset.location);
+        });
+      });
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        academicMap.invalidateSize();
+        focusAcademicLocation("paris8");
+      }, 300);
     });
 
-    document.querySelectorAll(".parcours-item").forEach((item) => {
-      item.classList.remove("active");
+    window.addEventListener("resize", () => {
+      academicMap.invalidateSize();
     });
-
-    const activeItem = document.querySelector(`.parcours-item[data-location="${key}"]`);
-    if (activeItem) {
-      activeItem.classList.add("active");
-    }
   }
 
-  document.querySelectorAll(".parcours-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      focusLocation(item.dataset.location);
+  /* =========================
+     CARTE PROFESSIONNELLE
+  ========================= */
+  const professionalMapContainer = document.getElementById("parcours-map-alt");
+
+  if (professionalMapContainer) {
+    const professionalMap = L.map("parcours-map-alt", {
+      zoomControl: true,
+      scrollWheelZoom: true
+    }).setView([46.8, 2.5], 5);
+
+    window.professionalMap = professionalMap;
+
+    const osm2 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap"
     });
-  });
 
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      parcoursMap.invalidateSize();
-      focusLocation("paris8");
-    }, 300);
-  });
+    const cartoLight2 = L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      { attribution: "&copy; OpenStreetMap &copy; CARTO" }
+    );
 
-  window.addEventListener("resize", () => {
-    parcoursMap.invalidateSize();
-  });
-}
-if (window.innerWidth <= 992) {
-  const mapSticky = document.querySelector(".map-sticky");
-  if (mapSticky) {
-    mapSticky.remove();
+    const esriWorldImagery2 = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      { attribution: "Tiles &copy; Esri" }
+    );
+
+    esriWorldImagery2.addTo(professionalMap);
+
+    const baseMapsProfessional = {
+      "Orthophoto": esriWorldImagery2,
+      "Plan OSM": osm2,
+      "Fond clair": cartoLight2
+    };
+
+    L.control.layers(baseMapsProfessional, null, { collapsed: false }).addTo(professionalMap);
+
+    const professionalLocations = {
+      enedis: {
+        coords: [48.8386, 2.5579],
+        zoom: 15,
+        title: "Enedis",
+        text: "Alternante géomaticienne • Noisy-le-Grand"
+      },
+      terresconfluences: {
+        coords: [44.0408, 1.1078],
+        zoom: 14,
+        title: "Terres des Confluences",
+        text: "Stage SIG • Castelsarrasin"
+      },
+      terrain: {
+        coords: [33.8935, -5.5473],
+        zoom: 12,
+        title: "Expériences terrain",
+        text: "Stages et missions en topographie"
+      }
+    };
+
+    const professionalMarkers = {};
+
+    Object.keys(professionalLocations).forEach((key) => {
+      const loc = professionalLocations[key];
+
+      const popupContent = `
+        <div class="map-popup">
+          <h3>${loc.title}</h3>
+          <p>${loc.text}</p>
+        </div>
+      `;
+
+      professionalMarkers[key] = L.marker(loc.coords)
+        .addTo(professionalMap)
+        .bindPopup(popupContent, {
+          maxWidth: 200,
+          minWidth: 120
+        });
+    });
+
+    focusProfessionalLocation = function (key) {
+      const loc = professionalLocations[key];
+      if (!loc) return;
+
+      professionalMap.closePopup();
+
+      professionalMap.flyTo(loc.coords, loc.zoom, {
+        animate: true,
+        duration: 3.2,
+        easeLinearity: 0.25
+      });
+
+      document
+        .querySelectorAll('.parcours-item[data-group="professionnel"]')
+        .forEach((item) => item.classList.remove("active"));
+
+      const activeItem = document.querySelector(
+        `.parcours-item[data-group="professionnel"][data-location="${key}"]`
+      );
+
+      if (activeItem) {
+        activeItem.classList.add("active");
+      }
+    };
+
+    document
+      .querySelectorAll('.parcours-item[data-group="professionnel"]')
+      .forEach((item) => {
+        item.addEventListener("click", () => {
+          focusProfessionalLocation(item.dataset.location);
+        });
+      });
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        professionalMap.invalidateSize();
+        focusProfessionalLocation("enedis");
+      }, 300);
+    });
+
+    window.addEventListener("resize", () => {
+      professionalMap.invalidateSize();
+    });
   }
 }
