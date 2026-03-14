@@ -1025,3 +1025,43 @@ main {
   font-family: Arial, Helvetica, sans-serif;
   color: #15304b;
 }
+/* ===== Popup Leaflet style portfolio ===== */
+
+.leaflet-popup-content-wrapper {
+  border-radius: 18px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(46, 94, 138, 0.18) !important;
+  border: none !important;
+}
+
+.leaflet-popup-tip {
+  background: linear-gradient(135deg, #8bcfff, #9fdfcf) !important;
+}
+
+/* Contenu du popup */
+.map-popup {
+  background: linear-gradient(135deg, #8bcfff, #9fdfcf);
+  color: #17415f;
+  padding: 16px 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 18px;
+}
+
+.map-popup h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.map-popup p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* bouton fermer */
+.leaflet-popup-close-button {
+  color: #17415f !important;
+  font-weight: bold;
+}
