@@ -17,6 +17,7 @@
 
 <body>
   <canvas id="site-bg-canvas"></canvas>
+
   <header class="site-header">
     <nav class="navbar container">
       <div class="logo">Hanae</div>
@@ -24,8 +25,8 @@
       <ul class="nav-links">
         <li><a href="#apropos">À propos</a></li>
         <li><a href="#parcours">Parcours</a></li>
+        <li><a href="#projets">Réalisations</a></li>
         <li><a href="#competences">Compétences</a></li>
-        <li><a href="#projets">Projets</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
 
@@ -35,8 +36,6 @@
 
   <main>
     <section id="apropos" class="intro-section container reveal visible">
-      
-
       <div class="topo-overlay">
         <span class="topo-stroke stroke-1"></span>
         <span class="topo-stroke stroke-2"></span>
@@ -75,12 +74,12 @@
         <p>Parcours</p>
         <h2>Mon parcours académique et professionnel</h2>
       </div>
-    
+
       <div class="parcours-switch">
         <button class="switch-btn active" data-target="academique">Académique</button>
         <button class="switch-btn" data-target="professionnel">Professionnel</button>
       </div>
-    
+
       <!-- PANEL ACADÉMIQUE -->
       <div id="academique" class="parcours-panel active">
         <div class="parcours-layout">
@@ -99,7 +98,7 @@
                 </p>
               </div>
             </div>
-    
+
             <div class="timeline-item parcours-item" data-location="orleans" data-group="academique">
               <div class="timeline-marker">
                 <span>2023</span>
@@ -113,13 +112,13 @@
                 </p>
               </div>
             </div>
-    
+
             <div class="timeline-item parcours-item" data-location="meknes" data-group="academique">
               <div class="timeline-marker">
                 <span>Avant</span>
               </div>
               <div class="timeline-body">
-                <h3>Institut des téchniciens spécialisés en Topoghraphie et Génie rural de Meknès (Maroc)</h3>
+                <h3>Institut des techniciens spécialisés en Topographie et Génie rural de Meknès (Maroc)</h3>
                 <h4>Diplôme de technicien spécialisé en topographie</h4>
                 <p>
                   Formation axée sur la topographie, les méthodes d’acquisition de données terrain
@@ -128,13 +127,13 @@
               </div>
             </div>
           </div>
-    
+
           <div class="map-sticky">
             <div id="parcours-map"></div>
           </div>
         </div>
       </div>
-    
+
       <!-- PANEL PROFESSIONNEL -->
       <div id="professionnel" class="parcours-panel">
         <div class="parcours-layout">
@@ -153,7 +152,7 @@
                 </p>
               </div>
             </div>
-    
+
             <div class="timeline-item parcours-item" data-location="terresconfluences" data-group="professionnel">
               <div class="timeline-marker">
                 <span>2024</span>
@@ -167,7 +166,7 @@
                 </p>
               </div>
             </div>
-    
+
             <div class="timeline-item parcours-item" data-location="terrain" data-group="professionnel">
               <div class="timeline-marker">
                 <span>Avant</span>
@@ -182,10 +181,97 @@
               </div>
             </div>
           </div>
-    
+
           <div class="map-sticky">
             <div id="parcours-map-alt"></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets" class="section container reveal">
+      <div class="section-title">
+        <p>Réalisations</p>
+        <h2>Quelques projets représentatifs</h2>
+        <p class="realisation-intro">
+          Quelques réalisations représentatives de mon parcours en géomatique, entre projets académiques et expériences professionnelles.
+        </p>
+      </div>
+
+      <div class="projets-switch">
+        <button class="proj-btn active" data-target="proj-academique">Académique</button>
+        <button class="proj-btn" data-target="proj-pro">Professionnel</button>
+      </div>
+
+      <div class="project-preview" id="project-preview"></div>
+
+      <!-- PROJETS ACADEMIQUES -->
+      <div id="proj-academique" class="projets-panel active">
+        <div class="projects-grid">
+          <article
+            class="project-card projet-item"
+            data-image="images/memoire.jpg"
+            data-description="Mémoire de recherche en géomatique portant sur la structuration et la cohérence des données territoriales. Travail combinant analyse spatiale, bases de données et visualisation cartographique."
+          >
+            <div class="project-icon"></div>
+            <h3>Mémoire de Master</h3>
+            <p>Projet de recherche appliquée en géomatique.</p>
+          </article>
+
+          <article
+            class="project-card projet-item"
+            data-image="images/sig.jpg"
+            data-description="Projets SIG réalisés durant le master incluant analyses spatiales, scripts Python et production de cartes interactives."
+          >
+            <div class="project-icon"></div>
+            <h3>Projets SIG universitaires</h3>
+            <p>Analyse spatiale et cartographie.</p>
+          </article>
+
+          <article
+            class="project-card projet-item"
+            data-image="images/cartographie.jpg"
+            data-description="Réalisation d’études cartographiques et de visualisations de données territoriales dans différents contextes académiques."
+          >
+            <div class="project-icon"></div>
+            <h3>Études cartographiques</h3>
+            <p>Production de cartes thématiques.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- PROJETS PROFESSIONNELS -->
+      <div id="proj-pro" class="projets-panel">
+        <div class="projects-grid">
+          <article
+            class="project-card projet-item"
+            data-image="images/appsig.jpg"
+            data-description="Développement d’applications cartographiques métier permettant la visualisation et l’analyse de données territoriales."
+          >
+            <div class="project-icon"></div>
+            <h3>Applications SIG</h3>
+            <p>Applications web cartographiques.</p>
+          </article>
+
+          <article
+            class="project-card projet-item"
+            data-image="images/automatisation.jpg"
+            data-description="Automatisation de traitements géographiques avec Python et FME pour améliorer la gestion des données spatiales."
+          >
+            <div class="project-icon"></div>
+            <h3>Automatisation SIG</h3>
+            <p>Workflows de traitement géographique.</p>
+          </article>
+
+          <article
+            class="project-card projet-item"
+            data-image="images/analyse.jpg"
+            data-description="Analyses spatiales réalisées pour répondre à des besoins métiers et produire des indicateurs territoriaux."
+          >
+            <div class="project-icon"></div>
+            <h3>Analyse spatiale</h3>
+            <p>Aide à la décision territoriale.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -208,103 +294,6 @@
         <span>Traitement de données</span>
         <span>Automatisation</span>
       </div>
-    </section>
-
-    <section id="projets" class="section container reveal">
-    
-      <div class="section-title">
-        <p>Réalisations</p>
-        <h2>Quelques projets représentatifs</h2>
-        <p class="realisation-intro">
-          Exemples de réalisations académiques et professionnelles illustrant
-          mes approches en analyse spatiale, cartographie et développement SIG.
-        </p>
-      </div>
-      
-      <div class="projets-switch">
-        <button class="proj-btn active" data-target="proj-academique">Académique</button>
-        <button class="proj-btn" data-target="proj-pro">Professionnel</button>
-      </div>
-      
-      <div class="project-preview" id="project-preview"></div>
-      
-        <!-- PROJETS ACADEMIQUES -->
-      <div id="proj-academique" class="projets-panel active">
-      
-      <div class="projects-grid">
-      
-        <article class="project-card projet-item"
-            data-image="images/memoire.jpg"
-            data-description="Mémoire de recherche en géomatique portant sur la structuration et la cohérence des données territoriales. Travail combinant analyse spatiale, bases de données et visualisation cartographique.">
-            
-          <div class="project-icon"></div>
-          <h3>Mémoire de Master</h3>
-          <p>Projet de recherche appliquée en géomatique.</p>
-        
-        </article>
-        
-        <article class="project-card projet-item"
-          data-image="images/sig.jpg"
-          data-description="Projets SIG réalisés durant le master incluant analyses spatiales, scripts Python et production de cartes interactives.">
-          
-          <div class="project-icon"></div>
-          <h3>Projets SIG universitaires</h3>
-          <p>Analyse spatiale et cartographie.</p>
-          
-        </article>
-        
-        <article class="project-card projet-item"
-          data-image="images/cartographie.jpg"
-          data-description="Réalisation d’études cartographiques et de visualisations de données territoriales dans différents contextes académiques.">
-          
-          <div class="project-icon"></div>
-          <h3>Études cartographiques</h3>
-          <p>Production de cartes thématiques.</p>
-          
-        </article>
-        
-        </div>
-      </div>
-      
-      
-      <!-- PROJETS PROFESSIONNELS -->
-      <div id="proj-pro" class="projets-panel">
-      
-      <div class="projects-grid">
-      
-      <article class="project-card projet-item"
-      data-image="images/appsig.jpg"
-      data-description="Développement d’applications cartographiques métier permettant la visualisation et l’analyse de données territoriales.">
-      
-      <div class="project-icon"></div>
-      <h3>Applications SIG</h3>
-      <p>Applications web cartographiques.</p>
-      
-      </article>
-      
-      <article class="project-card projet-item"
-      data-image="images/automatisation.jpg"
-      data-description="Automatisation de traitements géographiques avec Python et FME pour améliorer la gestion des données spatiales.">
-      
-      <div class="project-icon"></div>
-      <h3>Automatisation SIG</h3>
-      <p>Workflows de traitement géographique.</p>
-      
-      </article>
-      
-      <article class="project-card projet-item"
-      data-image="images/analyse.jpg"
-      data-description="Analyses spatiales réalisées pour répondre à des besoins métiers et produire des indicateurs territoriaux.">
-      
-      <div class="project-icon"></div>
-      <h3>Analyse spatiale</h3>
-      <p>Aide à la décision territoriale.</p>
-      
-      </article>
-      
-      </div>
-      </div>
-    
     </section>
   </main>
 
