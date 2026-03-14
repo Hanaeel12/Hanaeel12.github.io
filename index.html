@@ -211,74 +211,100 @@
     </section>
 
     <section id="projets" class="section container reveal">
+    
       <div class="section-title">
-        <p>Projets</p>
-        <h2>Réalisations professionnelles et académiques</h2>
+        <p>Réalisations</p>
+        <h2>Quelques projets représentatifs</h2>
+        <p class="realisation-intro">
+          Exemples de réalisations académiques et professionnelles illustrant
+          mes approches en analyse spatiale, cartographie et développement SIG.
+        </p>
       </div>
-
-      <div class="projects-block">
-        <h3 class="subsection-title">Projets professionnels</h3>
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-icon"></div>
-            <h3>Applications cartographiques métier</h3>
-            <p>
-              Conception et amélioration d’applications web SIG pour répondre à des
-              besoins opérationnels et faciliter la visualisation des données spatiales.
-            </p>
-          </article>
-
-          <article class="project-card">
-            <div class="project-icon"></div>
-            <h3>Automatisation de traitements géographiques</h3>
-            <p>
-              Mise en place de workflows pour structurer, traiter et valoriser les
-              données géographiques dans un objectif de gain de temps et de fiabilité.
-            </p>
-          </article>
-
-          <article class="project-card">
-            <div class="project-icon"></div>
-            <h3>Analyse spatiale et aide à la décision</h3>
-            <p>
-              Production d’analyses, de cartes et de livrables permettant
-              d’accompagner les équipes dans leurs projets et leurs besoins terrain.
-            </p>
-          </article>
+      
+      <div class="projets-switch">
+        <button class="proj-btn active" data-target="proj-academique">Académique</button>
+        <button class="proj-btn" data-target="proj-pro">Professionnel</button>
+      </div>
+      
+      <div class="project-preview" id="project-preview"></div>
+      
+        <!-- PROJETS ACADEMIQUES -->
+      <div id="proj-academique" class="projets-panel active">
+      
+      <div class="projects-grid">
+      
+        <article class="project-card projet-item"
+            data-image="images/memoire.jpg"
+            data-description="Mémoire de recherche en géomatique portant sur la structuration et la cohérence des données territoriales. Travail combinant analyse spatiale, bases de données et visualisation cartographique.">
+            
+          <div class="project-icon"></div>
+          <h3>Mémoire de Master</h3>
+          <p>Projet de recherche appliquée en géomatique.</p>
+        
+        </article>
+        
+        <article class="project-card projet-item"
+          data-image="images/sig.jpg"
+          data-description="Projets SIG réalisés durant le master incluant analyses spatiales, scripts Python et production de cartes interactives.">
+          
+          <div class="project-icon"></div>
+          <h3>Projets SIG universitaires</h3>
+          <p>Analyse spatiale et cartographie.</p>
+          
+        </article>
+        
+        <article class="project-card projet-item"
+          data-image="images/cartographie.jpg"
+          data-description="Réalisation d’études cartographiques et de visualisations de données territoriales dans différents contextes académiques.">
+          
+          <div class="project-icon"></div>
+          <h3>Études cartographiques</h3>
+          <p>Production de cartes thématiques.</p>
+          
+        </article>
+        
         </div>
       </div>
-
-      <div class="projects-block">
-        <h3 class="subsection-title">Mémoires et projets académiques</h3>
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-icon"></div>
-            <h3>Mémoire de Master</h3>
-            <p>
-              Travail de recherche appliquée en géomatique autour de problématiques
-              de structuration, cohérence et valorisation de données territoriales.
-            </p>
-          </article>
-
-          <article class="project-card">
-            <div class="project-icon"></div>
-            <h3>Projets universitaires SIG</h3>
-            <p>
-              Réalisation de projets d’analyse spatiale, cartographie thématique,
-              automatisation de traitements et développement de supports interactifs.
-            </p>
-          </article>
-
-          <article class="project-card">
-            <div class="project-icon"></div>
-            <h3>Études cartographiques</h3>
-            <p>
-              Conception de cartes, tableaux de bord et livrables de synthèse
-              dans le cadre de travaux académiques et d’études territoriales.
-            </p>
-          </article>
-        </div>
+      
+      
+      <!-- PROJETS PROFESSIONNELS -->
+      <div id="proj-pro" class="projets-panel">
+      
+      <div class="projects-grid">
+      
+      <article class="project-card projet-item"
+      data-image="images/appsig.jpg"
+      data-description="Développement d’applications cartographiques métier permettant la visualisation et l’analyse de données territoriales.">
+      
+      <div class="project-icon"></div>
+      <h3>Applications SIG</h3>
+      <p>Applications web cartographiques.</p>
+      
+      </article>
+      
+      <article class="project-card projet-item"
+      data-image="images/automatisation.jpg"
+      data-description="Automatisation de traitements géographiques avec Python et FME pour améliorer la gestion des données spatiales.">
+      
+      <div class="project-icon"></div>
+      <h3>Automatisation SIG</h3>
+      <p>Workflows de traitement géographique.</p>
+      
+      </article>
+      
+      <article class="project-card projet-item"
+      data-image="images/analyse.jpg"
+      data-description="Analyses spatiales réalisées pour répondre à des besoins métiers et produire des indicateurs territoriaux.">
+      
+      <div class="project-icon"></div>
+      <h3>Analyse spatiale</h3>
+      <p>Aide à la décision territoriale.</p>
+      
+      </article>
+      
       </div>
+      </div>
+    
     </section>
   </main>
 
