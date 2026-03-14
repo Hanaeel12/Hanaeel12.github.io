@@ -266,7 +266,8 @@ if (mapContainer && typeof L !== "undefined") {
   
     parcoursMap.flyTo(loc.coords, loc.zoom, {
       animate: true,
-      duration: 2
+      duration: 3.8,
+      easeLinearity: 0.25
     });
   
     document.querySelectorAll(".parcours-item").forEach((item) => {
