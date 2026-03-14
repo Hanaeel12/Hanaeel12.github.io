@@ -259,21 +259,22 @@ if (mapContainer && typeof L !== "undefined") {
   function focusLocation(key) {
     const loc = locations[key];
     if (!loc) return;
-
+  
+    parcoursMap.closePopup();
+  
     parcoursMap.flyTo(loc.coords, loc.zoom, {
       animate: true,
       duration: 2
     });
-
-    setTimeout(() => {
-      markers[key].openPopup();
-    }, 900);
-
+  
     document.querySelectorAll(".parcours-item").forEach((item) => {
       item.classList.remove("active");
     });
-
-    const activeItem = document.querySelector(`.parcours-item[data-location="${key}"]`);
+  
+    const activeItem = document.querySelector(
+      `.parcours-item[data-location="${key}"]`
+    );
+  
     if (activeItem) {
       activeItem.classList.add("active");
     }
@@ -296,4 +297,53 @@ if (mapContainer && typeof L !== "undefined") {
   window.addEventListener("resize", () => {
     parcoursMap.invalidateSize();
   });
+}
+
+/* Popup Leaflet plus compact et aux couleurs du site */
+.leaflet-popup-content-wrapper {
+  border-radius: 18px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(46, 94, 138, 0.18) !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  min-width: 0 !important;
+}
+
+.leaflet-popup-tip {
+  background: linear-gradient(135deg, #8bcfff, #9fdfcf) !important;
+}
+
+.map-popup {
+  background: linear-gradient(135deg, #8bcfff, #9fdfcf);
+  color: #17415f;
+  padding: 12px 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 18px;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+.map-popup h3 {
+  margin: 0 0 4px 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.map-popup p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #24506d;
+}
+
+.leaflet-popup-close-button {
+  color: #17415f !important;
+  font-weight: bold;
+  padding: 6px 8px 0 0 !important;
 }
