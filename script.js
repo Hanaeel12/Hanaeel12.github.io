@@ -58,15 +58,15 @@ if (siteCanvas) {
     initParticles();
   }
 
-  class Particle {
-    constructor() {
-      this.size = Math.random() * 2 + 1;
-      this.x = Math.random() * siteCanvas.width;
-      this.y = Math.random() * siteCanvas.height;
-      this.vx = (Math.random() - 0.5) * 0.35;
-      this.vy = (Math.random() - 0.5) * 0.35;
-      this.alpha = Math.random() * 0.45 + 0.2;
-    }
+   class Particle {
+     constructor() {
+       this.size = Math.random() * 2.4 + 1.4;
+       this.x = Math.random() * siteCanvas.width;
+       this.y = Math.random() * siteCanvas.height;
+       this.vx = (Math.random() - 0.5) * 0.4;
+       this.vy = (Math.random() - 0.5) * 0.4;
+       this.alpha = Math.random() * 0.35 + 0.45;
+     }
 
     update() {
       this.x += this.vx;
@@ -90,12 +90,15 @@ if (siteCanvas) {
       }
     }
 
-    draw() {
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(95,190,255,${this.alpha})`;
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
+      draw() {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(95,190,255,${this.alpha})`;
+        ctx.shadowColor = "rgba(95,190,255,0.35)";
+        ctx.shadowBlur = 10;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
   }
 
   function initParticles() {
@@ -120,11 +123,11 @@ if (siteCanvas) {
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 140) {
+        if (dist < 170) {
           const opacity = 1 - dist / 140;
 
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(120,200,255,${opacity * 0.12})`;
+          ctx.strokeStyle = `rgba(120,200,255,${opacity * 0.22})`;
           ctx.lineWidth = 1;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
