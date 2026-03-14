@@ -13,6 +13,9 @@ if (menuBtn && navLinks) {
   });
 }
 
+/* =========================
+   REVEAL SECTIONS
+========================= */
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -97,7 +100,11 @@ if (heroSection && heroCanvas) {
   function initParticles() {
     particles = [];
     let count = Math.floor(heroCanvas.width / 18);
-    count = Math.max(45, Math.min(count, 95));
+    count = Math.max(30, Math.min(count, 95));
+
+    if (window.innerWidth <= 768) {
+      count = 25;
+    }
 
     for (let i = 0; i < count; i++) {
       particles.push(new Particle());
@@ -149,7 +156,9 @@ if (heroSection && heroCanvas) {
   function animateCanvas() {
     ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
-    drawMouseGlow();
+    if (window.innerWidth > 768) {
+      drawMouseGlow();
+    }
 
     particles.forEach((particle) => {
       particle.update();
@@ -179,35 +188,32 @@ if (heroSection && heroCanvas) {
 
 /* =========================
    CARTE PARCOURS LEAFLET
+   Désactivée sur petit écran
 ========================= */
 const mapContainer = document.getElementById("parcours-map");
 
-if (mapContainer && typeof L !== "undefined") {
+if (mapContainer && typeof L !== "undefined" && window.innerWidth > 992) {
   const parcoursMap = L.map("parcours-map", {
     zoomControl: true,
     scrollWheelZoom: true
   }).setView([46.8, 2.5], 5);
 
-  /* Fonds de carte */
   const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap"
   });
 
-  const cartoLight = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    attribution: "&copy; OpenStreetMap &copy; CARTO"
-  });
+  const cartoLight = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    { attribution: "&copy; OpenStreetMap &copy; CARTO" }
+  );
 
   const esriWorldImagery = L.tileLayer(
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    {
-      attribution: "Tiles &copy; Esri"
-    }
+    { attribution: "Tiles &copy; Esri" }
   );
 
-  /* Fond affiché par défaut */
   esriWorldImagery.addTo(parcoursMap);
 
-  /* Contrôle de couches */
   const baseMaps = {
     "Orthophoto": esriWorldImagery,
     "Plan OSM": osm,
@@ -251,33 +257,31 @@ if (mapContainer && typeof L !== "undefined") {
       </div>
     `;
 
-  markers[key] = L.marker(loc.coords)
-    .addTo(parcoursMap)
-    .bindPopup(popupContent,{
+    markers[key] = L.marker(loc.coords)
+      .addTo(parcoursMap)
+      .bindPopup(popupContent, {
         maxWidth: 200,
         minWidth: 120
-    });
+      });
+  });
 
   function focusLocation(key) {
     const loc = locations[key];
     if (!loc) return;
-  
+
     parcoursMap.closePopup();
-  
+
     parcoursMap.flyTo(loc.coords, loc.zoom, {
       animate: true,
       duration: 3.8,
       easeLinearity: 0.25
     });
-  
+
     document.querySelectorAll(".parcours-item").forEach((item) => {
       item.classList.remove("active");
     });
-  
-    const activeItem = document.querySelector(
-      `.parcours-item[data-location="${key}"]`
-    );
-  
+
+    const activeItem = document.querySelector(`.parcours-item[data-location="${key}"]`);
     if (activeItem) {
       activeItem.classList.add("active");
     }
@@ -285,8 +289,7 @@ if (mapContainer && typeof L !== "undefined") {
 
   document.querySelectorAll(".parcours-item").forEach((item) => {
     item.addEventListener("click", () => {
-      const key = item.dataset.location;
-      focusLocation(key);
+      focusLocation(item.dataset.location);
     });
   });
 
@@ -300,53 +303,4 @@ if (mapContainer && typeof L !== "undefined") {
   window.addEventListener("resize", () => {
     parcoursMap.invalidateSize();
   });
-}
-
-/* Popup Leaflet plus compact et aux couleurs du site */
-.leaflet-popup-content-wrapper {
-  border-radius: 18px !important;
-  padding: 0 !important;
-  overflow: hidden;
-  box-shadow: 0 14px 35px rgba(46, 94, 138, 0.18) !important;
-  border: none !important;
-  background: transparent !important;
-}
-
-.leaflet-popup-content {
-  margin: 0 !important;
-  min-width: 0 !important;
-}
-
-.leaflet-popup-tip {
-  background: linear-gradient(135deg, #8bcfff, #9fdfcf) !important;
-}
-
-.map-popup {
-  background: linear-gradient(135deg, #8bcfff, #9fdfcf);
-  color: #17415f;
-  padding: 12px 14px;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 18px;
-  min-width: 180px;
-  max-width: 220px;
-}
-
-.map-popup h3 {
-  margin: 0 0 4px 0;
-  font-size: 0.98rem;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.map-popup p {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.45;
-  color: #24506d;
-}
-
-.leaflet-popup-close-button {
-  color: #17415f !important;
-  font-weight: bold;
-  padding: 6px 8px 0 0 !important;
 }
