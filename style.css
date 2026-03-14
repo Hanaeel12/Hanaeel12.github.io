@@ -1107,3 +1107,178 @@ main {
   font-size:16px !important;
   padding:6px 8px 0 0 !important;
 }
+
+/* ===== RESPONSIVE FIX FINAL ===== */
+@media (max-width: 992px) {
+  .parcours-layout,
+  .photo-layout,
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .map-sticky,
+  #parcours-map {
+    display: none !important;
+  }
+
+  .photo-side {
+    order: -1;
+    margin-bottom: 20px;
+  }
+
+  .intro-section {
+    min-height: auto !important;
+    padding: 40px 0 20px !important;
+  }
+
+  .timeline {
+    padding-left: 100px !important;
+  }
+
+  .timeline::before {
+    left: 32px !important;
+  }
+
+  .timeline-marker {
+    left: -100px !important;
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  .timeline-marker span {
+    font-size: 0.9rem !important;
+  }
+
+  .timeline-body h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .timeline-body h4 {
+    font-size: 1rem !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 92%;
+  }
+
+  .intro-text h1 {
+    font-size: 2.2rem !important;
+    line-height: 1.15;
+  }
+
+  .intro-text h2 {
+    font-size: 1.05rem !important;
+    line-height: 1.5;
+  }
+
+  .intro-description {
+    font-size: 0.96rem !important;
+    line-height: 1.8;
+  }
+
+  .section {
+    padding: 55px 0 25px !important;
+  }
+
+  .section-title h2,
+  .footer h2 {
+    font-size: 1.8rem !important;
+    line-height: 1.2;
+  }
+
+  .photo-frame {
+    width: 190px !important;
+    height: 190px !important;
+  }
+
+  .hero-buttons {
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .timeline {
+    padding-left: 82px !important;
+  }
+
+  .timeline::before {
+    left: 24px !important;
+  }
+
+  .timeline-marker {
+    left: -82px !important;
+    width: 54px !important;
+    height: 54px !important;
+    border-width: 3px !important;
+  }
+
+  .timeline-marker span {
+    font-size: 0.72rem !important;
+    padding: 6px !important;
+  }
+
+  .timeline-body p {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .skills {
+    gap: 10px;
+  }
+
+  .skills span {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+
+  .project-card {
+    padding: 22px;
+  }
+
+  .footer-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 0;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .intro-section {
+    padding-top: 24px !important;
+  }
+
+  .intro-text h1 {
+    font-size: 1.9rem !important;
+  }
+
+  .intro-text h2 {
+    font-size: 0.98rem !important;
+  }
+
+  .section-title h2,
+  .footer h2 {
+    font-size: 1.55rem !important;
+  }
+
+  .photo-frame {
+    width: 160px !important;
+    height: 160px !important;
+  }
+}
