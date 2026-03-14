@@ -304,3 +304,9 @@ if (mapContainer && typeof L !== "undefined" && window.innerWidth > 992) {
     parcoursMap.invalidateSize();
   });
 }
+if (window.innerWidth <= 992) {
+  const mapSticky = document.querySelector(".map-sticky");
+  if (mapSticky) {
+    mapSticky.remove();
+  }
+}
