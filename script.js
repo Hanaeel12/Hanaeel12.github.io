@@ -486,27 +486,50 @@ projButtons.forEach((btn) => {
 });
 
 /* =========================
-   APERÇU PROJET
+   MODAL PROJET
 ========================= */
+const projectModal = document.getElementById("project-modal");
+const projectModalImage = document.getElementById("project-modal-image");
+const projectModalDescription = document.getElementById("project-modal-description");
+const projectModalClose = document.getElementById("project-modal-close");
+
 document.querySelectorAll(".projet-item").forEach((card) => {
   card.addEventListener("click", () => {
     const img = card.dataset.image;
     const desc = card.dataset.description;
 
-    if (!preview) return;
+    if (!projectModal || !projectModalImage || !projectModalDescription) return;
 
-    preview.innerHTML = `
-      <div class="project-preview-card">
-        <img src="${img}" alt="Aperçu du projet">
-        <div class="project-overlay">
-          <p>${desc}</p>
-        </div>
-      </div>
-    `;
-
-    preview.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
+    projectModalImage.src = img;
+    projectModalDescription.textContent = desc;
+    projectModal.classList.add("active");
+    projectModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
   });
+});
+
+if (projectModalClose && projectModal) {
+  projectModalClose.addEventListener("click", () => {
+    projectModal.classList.remove("active");
+    projectModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  });
+}
+
+if (projectModal) {
+  projectModal.addEventListener("click", (e) => {
+    if (e.target === projectModal) {
+      projectModal.classList.remove("active");
+      projectModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && projectModal && projectModal.classList.contains("active")) {
+    projectModal.classList.remove("active");
+    projectModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
 });
