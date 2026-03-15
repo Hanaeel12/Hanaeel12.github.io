@@ -194,84 +194,145 @@
         <p>Réalisations</p>
         <h2>Quelques projets représentatifs</h2>
         <p class="realisation-intro">
-          Quelques réalisations représentatives de mon parcours en géomatique, entre projets académiques et expériences professionnelles.
+          Sélection de projets académiques et professionnels illustrant mes approches
+          en analyse spatiale, cartographie, développement SIG et automatisation.
         </p>
       </div>
-
+    
       <div class="projets-switch">
-        <button class="proj-btn active" data-target="proj-academique">Académique</button>
-        <button class="proj-btn" data-target="proj-pro">Professionnel</button>
+        <button class="proj-btn active" data-target="proj-academique">Projets académiques</button>
+        <button class="proj-btn" data-target="proj-analyse">Analyse spatiale</button>
+        <button class="proj-btn" data-target="proj-dev">Développement SIG</button>
       </div>
-
-      
-
-      <!-- PROJETS ACADEMIQUES -->
+    
+      <!-- PROJETS ACADÉMIQUES -->
       <div id="proj-academique" class="projets-panel active">
         <div class="projects-grid">
+    
           <article
             class="project-card projet-item"
-            data-image="memoire_enedis.png"
-            data-description="Mémoire de recherche en géomatique portant sur la structuration et la cohérence des données territoriales. Travail combinant analyse spatiale, bases de données et visualisation cartographique."
+            data-image="images/memoire-m1.jpg"
+            data-title="Mémoire de Master 1"
+            data-description="Création d’une application Web AppBuilder pour l’aide à la planification des opérations d’élagage au bord des ouvrages électriques pour Enedis."
           >
             <div class="project-icon"></div>
-            <h3>Mémoire de Master</h3>
-            <p>Projet de recherche appliquée en géomatique.</p>
+            <h3>Mémoire de Master 1</h3>
+            <p>Application Web AppBuilder pour l’aide à la planification des opérations d’élagage.</p>
           </article>
-
+    
           <article
             class="project-card projet-item"
-            data-image="images/sig.jpg"
-            data-description="Projets SIG réalisés durant le master incluant analyses spatiales, scripts Python et production de cartes interactives."
+            data-image="images/rapport-licence.jpg"
+            data-title="Rapport de stage Licence Pro"
+            data-description="Détection et correction des anomalies dans la base de données de l’assainissement non collectif de la Communauté de communes Terres des Confluences."
           >
             <div class="project-icon"></div>
-            <h3>Projets SIG universitaires</h3>
-            <p>Analyse spatiale et cartographie.</p>
+            <h3>Rapport de stage Licence Pro</h3>
+            <p>Détection des anomalies et gestion d’une base de données territoriale.</p>
           </article>
-
+    
           <article
             class="project-card projet-item"
-            data-image="images/cartographie.jpg"
-            data-description="Réalisation d’études cartographiques et de visualisations de données territoriales dans différents contextes académiques."
+            data-image="images/pfe-topographie.jpg"
+            data-title="Projet de fin d’études Topographie"
+            data-description="Projet de réhabilitation de l’ancienne médina de Fès basé sur la lasergrammétrie, la photogrammétrie et la production d’orthophotos de façades."
           >
             <div class="project-icon"></div>
-            <h3>Études cartographiques</h3>
-            <p>Production de cartes thématiques.</p>
+            <h3>Projet de fin d’études Topographie</h3>
+            <p>Lasergrammétrie, photogrammétrie et orthophotos pour la réhabilitation du patrimoine.</p>
           </article>
+    
         </div>
       </div>
-
-      <!-- PROJETS PROFESSIONNELS -->
-      <div id="proj-pro" class="projets-panel">
+    
+      <!-- ANALYSE SPATIALE -->
+      <div id="proj-analyse" class="projets-panel">
         <div class="projects-grid">
+    
           <article
             class="project-card projet-item"
-            data-image="images/appsig.jpg"
-            data-description="Développement d’applications cartographiques métier permettant la visualisation et l’analyse de données territoriales."
+            data-image="images/analyse-logement.jpg"
+            data-title="Analyse multicritère logement"
+            data-description="Projet SIG réalisé sous ArcGIS Pro pour identifier des secteurs adaptés à la recherche d’un logement selon des critères définis par un demandeur."
           >
             <div class="project-icon"></div>
-            <h3>Applications SIG</h3>
-            <p>Applications web cartographiques.</p>
+            <h3>Analyse multicritère logement</h3>
+            <p>Recherche de logements selon des critères spatiaux définis.</p>
           </article>
-
+    
           <article
             class="project-card projet-item"
-            data-image="images/automatisation.jpg"
-            data-description="Automatisation de traitements géographiques avec Python et FME pour améliorer la gestion des données spatiales."
+            data-image="images/ilot-chaleur.jpg"
+            data-title="Îlots de chaleur et de fraîcheur"
+            data-description="Étude de télédétection menée à Paris pour identifier les îlots de chaleur et de fraîcheur à partir de traitements d’images et d’analyses spatiales."
           >
             <div class="project-icon"></div>
-            <h3>Automatisation SIG</h3>
-            <p>Workflows de traitement géographique.</p>
+            <h3>Îlots de chaleur et de fraîcheur</h3>
+            <p>Analyse par télédétection des contrastes thermiques urbains.</p>
           </article>
-
+    
           <article
             class="project-card projet-item"
-            data-image="images/analyse.jpg"
-            data-description="Analyses spatiales réalisées pour répondre à des besoins métiers et produire des indicateurs territoriaux."
+            data-image="images/temperature-europe.jpg"
+            data-title="Températures minimales en Europe"
+            data-description="Analyse des températures minimales en Europe à partir de données NetCDF, traitement sous R et production de cartes temporelles entre 1950 et 2024."
           >
             <div class="project-icon"></div>
-            <h3>Analyse spatiale</h3>
-            <p>Aide à la décision territoriale.</p>
+            <h3>Températures minimales en Europe</h3>
+            <p>Traitement de données NetCDF et cartographie sous R.</p>
           </article>
+    
+        </div>
+      </div>
+    
+      <!-- DÉVELOPPEMENT SIG -->
+      <div id="proj-dev" class="projets-panel">
+        <div class="projects-grid">
+    
+          <article
+            class="project-card projet-item"
+            data-image="images/plugin-qgis.jpg"
+            data-title="Plugin QGIS d’analyse de risque"
+            data-description="Développement d’un plugin QGIS permettant d’analyser des entités exposées à un risque, de générer un buffer et de produire automatiquement un rapport."
+          >
+            <div class="project-icon"></div>
+            <h3>Plugin QGIS d’analyse de risque</h3>
+            <p>Plugin Python/QGIS pour automatiser l’analyse spatiale et les rapports.</p>
+          </article>
+    
+          <article
+            class="project-card projet-item"
+            data-image="images/atlas-arcpy.jpg"
+            data-title="Atlas automatisé ArcPy"
+            data-description="Création d’un atlas automatisé sous ArcGIS Pro avec ArcPy pour cartographier chaque année les anomalies recensées sur le réseau électrique."
+          >
+            <div class="project-icon"></div>
+            <h3>Atlas automatisé ArcPy</h3>
+            <p>Automatisation cartographique annuelle des anomalies réseau.</p>
+          </article>
+    
+          <article
+            class="project-card projet-item"
+            data-image="images/web-postgres-php.jpg"
+            data-title="Application web connectée à PostgreSQL"
+            data-description="Développement d’une interface web connectée à une base PostgreSQL avec formulaire, filtrage, affichage cartographique et interaction avec les données."
+          >
+            <div class="project-icon"></div>
+            <h3>Application web connectée à PostgreSQL</h3>
+            <p>Interface web de consultation et d’affichage cartographique.</p>
+          </article>
+    
+          <article
+            class="project-card projet-item"
+            data-image="images/toolbox-arcpy.jpg"
+            data-title="Boîte à outils ArcGIS Pro"
+            data-description="Développement d’un outil ArcPy pour analyser la longueur des routes proches des zones vertes par commune et automatiser les traitements."
+          >
+            <div class="project-icon"></div>
+            <h3>Boîte à outils ArcGIS Pro</h3>
+            <p>Automatisation d’analyses de proximité et d’indicateurs communaux.</p>
+          </article>
+    
         </div>
       </div>
     </section>
@@ -279,20 +340,81 @@
     <section id="competences" class="section container reveal">
       <div class="section-title">
         <p>Compétences</p>
-        <h2>Mes outils clés</h2>
+        <h2>Outils et environnements maîtrisés</h2>
+        <p class="realisation-intro">
+          Ensemble d’outils et de technologies mobilisés dans mes projets en géomatique,
+          cartographie, automatisation et développement web.
+        </p>
       </div>
-
-      <div class="skills">
-        <span>ArcGIS Pro</span>
-        <span>ArcGIS Online</span>
-        <span>QGIS</span>
-        <span>FME</span>
-        <span>SQL / PostGIS</span>
-        <span>Python</span>
-        <span>Cartographie web</span>
-        <span>Analyse spatiale</span>
-        <span>Traitement de données</span>
-        <span>Automatisation</span>
+    
+      <div class="skills-logos-grid">
+    
+        <article
+          class="skill-card competence-item"
+          data-image="images/arcgis-pro.jpg"
+          data-title="ArcGIS Pro"
+          data-description="Utilisation d’ArcGIS Pro pour l’analyse spatiale, la cartographie, l’automatisation avec ArcPy et la création d’outils métier."
+        >
+          <img src="images/logo-arcgis-pro.png" alt="ArcGIS Pro" class="skill-logo" />
+          <h3>ArcGIS Pro</h3>
+          <p>Analyse, cartographie et automatisation.</p>
+        </article>
+    
+        <article
+          class="skill-card competence-item"
+          data-image="images/arcgis-online.jpg"
+          data-title="ArcGIS Online"
+          data-description="Création de cartes web, applications interactives, tableaux de bord et diffusion de contenus cartographiques en ligne."
+        >
+          <img src="images/logo-arcgis-online.png" alt="ArcGIS Online" class="skill-logo" />
+          <h3>ArcGIS Online</h3>
+          <p>Cartographie web et diffusion interactive.</p>
+        </article>
+    
+        <article
+          class="skill-card competence-item"
+          data-image="images/qgis.jpg"
+          data-title="QGIS"
+          data-description="Utilisation de QGIS pour la cartographie, les traitements spatiaux, le développement de plugins et les analyses de risque."
+        >
+          <img src="images/logo-qgis.png" alt="QGIS" class="skill-logo" />
+          <h3>QGIS</h3>
+          <p>Cartographie, traitements et plugins.</p>
+        </article>
+    
+        <article
+          class="skill-card competence-item"
+          data-image="images/python.jpg"
+          data-title="Python"
+          data-description="Automatisation de traitements géographiques, scripts ArcPy, analyse de données et production de cartes avec Python."
+        >
+          <img src="images/logo-python.png" alt="Python" class="skill-logo" />
+          <h3>Python</h3>
+          <p>Scripts, automatisation et analyse de données.</p>
+        </article>
+    
+        <article
+          class="skill-card competence-item"
+          data-image="images/postgresql.jpg"
+          data-title="PostgreSQL / PostGIS"
+          data-description="Gestion, requêtage et structuration de bases de données spatiales avec PostgreSQL, PostGIS et outils associés."
+        >
+          <img src="images/logo-postgresql.png" alt="PostgreSQL" class="skill-logo" />
+          <h3>PostgreSQL / PostGIS</h3>
+          <p>Gestion et exploitation de bases spatiales.</p>
+        </article>
+    
+        <article
+          class="skill-card competence-item"
+          data-image="images/dev-web.jpg"
+          data-title="Développement web"
+          data-description="Réalisation d’interfaces web en HTML, CSS, JavaScript, PHP et intégration de cartes et de formulaires connectés à des bases de données."
+        >
+          <img src="images/logo-web.png" alt="Développement web" class="skill-logo" />
+          <h3>Développement web</h3>
+          <p>Interfaces, formulaires et cartes interactives.</p>
+        </article>
+    
       </div>
     </section>
   </main>
@@ -325,9 +447,12 @@
     <button id="project-modal-close" class="project-modal-close" aria-label="Fermer">×</button>
   
     <div class="project-modal-content">
-      <img id="project-modal-image" src="" alt="Aperçu du projet" />
+      <img id="project-modal-image" src="" alt="Aperçu" />
       <div class="project-modal-overlay">
-        <p id="project-modal-description"></p>
+        <div>
+          <h3 id="project-modal-title"></h3>
+          <p id="project-modal-description"></p>
+        </div>
       </div>
     </div>
 </div>
