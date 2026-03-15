@@ -214,9 +214,6 @@ switchButtons.forEach((button) => {
    CARTES (SEULEMENT DESKTOP)
 ========================= */
 if (typeof L !== "undefined" && window.innerWidth > 992) {
-  /* =========================
-     CARTE ACADÉMIQUE
-  ========================= */
   const academicMapContainer = document.getElementById("parcours-map");
 
   if (academicMapContainer) {
@@ -244,7 +241,7 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
     esriWorldImagery.addTo(academicMap);
 
     const baseMapsAcademic = {
-      "Orthophoto": esriWorldImagery,
+      Orthophoto: esriWorldImagery,
       "Plan OSM": osm,
       "Fond clair": cartoLight
     };
@@ -256,45 +253,26 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
     const academicLocations = {
       paris8: {
         coords: [48.947, 2.363],
-        zoom: 16,
-        title: "Université Paris 8",
-        text: "Master 2 • Géomatique"
+        zoom: 16
       },
       orleans: {
         coords: [47.843, 1.934],
-        zoom: 14,
-        title: "Université d'Orléans",
-        text: "Licence pro SIG"
+        zoom: 14
       },
       meknes: {
         coords: [33.8935, -5.5473],
-        zoom: 13,
-        title: "ISGRT Meknès",
-        text: "Technicien topographe"
+        zoom: 13
       }
     };
 
-    const academicMarkers = {};
-
     Object.keys(academicLocations).forEach((key) => {
       const loc = academicLocations[key];
-
-      academicMarkers[key] = L.marker(loc.coords)
-        .addTo(academicMap)
-        .bindPopup(
-          `<div class="map-popup"><h3>${loc.title}</h3><p>${loc.text}</p></div>`,
-          {
-            maxWidth: 200,
-            minWidth: 120
-          }
-        );
+      L.marker(loc.coords).addTo(academicMap);
     });
 
     focusAcademicLocation = function (key) {
       const loc = academicLocations[key];
       if (!loc) return;
-
-      academicMap.closePopup();
 
       academicMap.flyTo(loc.coords, loc.zoom, {
         animate: true,
@@ -335,9 +313,6 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
     });
   }
 
-  /* =========================
-     CARTE PROFESSIONNELLE
-  ========================= */
   const professionalMapContainer = document.getElementById("parcours-map-alt");
 
   if (professionalMapContainer) {
@@ -365,7 +340,7 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
     esriWorldImagery2.addTo(professionalMap);
 
     const baseMapsProfessional = {
-      "Orthophoto": esriWorldImagery2,
+      Orthophoto: esriWorldImagery2,
       "Plan OSM": osm2,
       "Fond clair": cartoLight2
     };
@@ -377,45 +352,26 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
     const professionalLocations = {
       enedis: {
         coords: [48.8386, 2.5579],
-        zoom: 15,
-        title: "Enedis",
-        text: "Alternante géomaticienne • Noisy-le-Grand"
+        zoom: 15
       },
       terresconfluences: {
         coords: [44.0408, 1.1078],
-        zoom: 14,
-        title: "Terres des Confluences",
-        text: "Stage SIG • Castelsarrasin"
+        zoom: 14
       },
       terrain: {
         coords: [33.8935, -5.5473],
-        zoom: 12,
-        title: "Expériences terrain",
-        text: "Topographie"
+        zoom: 12
       }
     };
 
-    const professionalMarkers = {};
-
     Object.keys(professionalLocations).forEach((key) => {
       const loc = professionalLocations[key];
-
-      professionalMarkers[key] = L.marker(loc.coords)
-        .addTo(professionalMap)
-        .bindPopup(
-          `<div class="map-popup"><h3>${loc.title}</h3><p>${loc.text}</p></div>`,
-          {
-            maxWidth: 200,
-            minWidth: 120
-          }
-        );
+      L.marker(loc.coords).addTo(professionalMap);
     });
 
     focusProfessionalLocation = function (key) {
       const loc = professionalLocations[key];
       if (!loc) return;
-
-      professionalMap.closePopup();
 
       professionalMap.flyTo(loc.coords, loc.zoom, {
         animate: true,
@@ -465,7 +421,6 @@ if (window.innerWidth <= 992) {
 ========================= */
 const projButtons = document.querySelectorAll(".proj-btn");
 const projPanels = document.querySelectorAll(".projets-panel");
-const preview = document.getElementById("project-preview");
 
 projButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -478,58 +433,59 @@ projButtons.forEach((btn) => {
     if (targetPanel) {
       targetPanel.classList.add("active");
     }
-
-    if (preview) {
-      preview.innerHTML = "";
-    }
   });
 });
 
 /* =========================
-   MODAL PROJET
+   MODAL PROJET / COMPETENCE
 ========================= */
 const projectModal = document.getElementById("project-modal");
 const projectModalImage = document.getElementById("project-modal-image");
+const projectModalTitle = document.getElementById("project-modal-title");
 const projectModalDescription = document.getElementById("project-modal-description");
 const projectModalClose = document.getElementById("project-modal-close");
 
-document.querySelectorAll(".projet-item").forEach((card) => {
+function openProjectModal(img, title, desc) {
+  if (!projectModal || !projectModalImage || !projectModalTitle || !projectModalDescription) return;
+
+  projectModalImage.src = img;
+  projectModalTitle.textContent = title || "";
+  projectModalDescription.textContent = desc || "";
+  projectModal.classList.add("active");
+  projectModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeProjectModal() {
+  if (!projectModal) return;
+  projectModal.classList.remove("active");
+  projectModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".projet-item, .competence-item").forEach((card) => {
   card.addEventListener("click", () => {
     const img = card.dataset.image;
+    const title = card.dataset.title;
     const desc = card.dataset.description;
-
-    if (!projectModal || !projectModalImage || !projectModalDescription) return;
-
-    projectModalImage.src = img;
-    projectModalDescription.textContent = desc;
-    projectModal.classList.add("active");
-    projectModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    openProjectModal(img, title, desc);
   });
 });
 
-if (projectModalClose && projectModal) {
-  projectModalClose.addEventListener("click", () => {
-    projectModal.classList.remove("active");
-    projectModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  });
+if (projectModalClose) {
+  projectModalClose.addEventListener("click", closeProjectModal);
 }
 
 if (projectModal) {
   projectModal.addEventListener("click", (e) => {
     if (e.target === projectModal) {
-      projectModal.classList.remove("active");
-      projectModal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
+      closeProjectModal();
     }
   });
 }
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && projectModal && projectModal.classList.contains("active")) {
-    projectModal.classList.remove("active");
-    projectModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    closeProjectModal();
   }
 });
