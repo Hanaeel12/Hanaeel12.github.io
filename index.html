@@ -203,7 +203,7 @@
         <button class="proj-btn" data-target="proj-pro">Professionnel</button>
       </div>
 
-      <div class="project-preview" id="project-preview"></div>
+      
 
       <!-- PROJETS ACADEMIQUES -->
       <div id="proj-academique" class="projets-panel active">
@@ -321,5 +321,15 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
+  <div id="project-modal" class="project-modal" aria-hidden="true">
+    <button id="project-modal-close" class="project-modal-close" aria-label="Fermer">×</button>
+  
+    <div class="project-modal-content">
+      <img id="project-modal-image" src="" alt="Aperçu du projet" />
+      <div class="project-modal-overlay">
+        <p id="project-modal-description"></p>
+      </div>
+    </div>
+</div>
 </body>
 </html>
