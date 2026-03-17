@@ -351,15 +351,23 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
 
     const professionalLocations = {
       enedis: {
-        coords: [48.8386, 2.5579],
+        coords: [48.838, 2.546],
         zoom: 15
       },
       terresconfluences: {
-        coords: [44.0408, 1.1078],
+        coords: [44.070, 1.096],
         zoom: 14
       },
-      terrain: {
-        coords: [33.8935, -5.5473],
+      Geolambert: {
+        coords: [34.037, -4.999],
+        zoom: 12
+      },
+      BNITOPO: {
+        coords: [32.928, -5.668],
+        zoom: 12
+      },
+      ANCFCC: {
+        coords: [32.926, -5.669],
         zoom: 12
       }
     };
