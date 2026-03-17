@@ -366,7 +366,7 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
         coords: [32.928, -5.668],
         zoom: 12
       },
-      ancfcc: {
+      anfcc: {
         coords: [32.926, -5.669],
         zoom: 12
       }
