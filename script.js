@@ -260,7 +260,7 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
         zoom: 14
       },
       meknes: {
-        coords: [33.8935, -5.5473],
+        coords: [33.876, -5.547],
         zoom: 13
       }
     };
