@@ -372,10 +372,54 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
       }
     };
 
-    Object.keys(professionalLocations).forEach((key) => {
-      const loc = professionalLocations[key];
-      L.marker(loc.coords).addTo(professionalMap);
-    });
+      const enedisIcon = L.icon({
+        iconUrl: "logo/ENEDIS.png",
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -35]
+      });
+      
+      const geolambertIcon = L.icon({
+        iconUrl: "logo/geolambert.png",
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -35]
+      });
+      
+      const bnitopoIcon = L.icon({
+        iconUrl: "logo/geolambert.png", // si t’as pas de logo spécifique
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -35]
+      });
+      
+      const terresIcon = L.icon({
+        iconUrl: "logo/terresdeconfluences.png",
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -35]
+      });
+      
+      const ancfccIcon = L.icon({
+        iconUrl: "logo/ancfcc.png",
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -35]
+      });
+     
+   Object.keys(professionalLocations).forEach((key) => {
+     const loc = professionalLocations[key];
+   
+     let icon = geolambertIcon; // défaut
+   
+     if (key === "enedis") icon = enedisIcon;
+     if (key === "terresconfluences") icon = terresIcon;
+     if (key === "geolambert") icon = geolambertIcon;
+     if (key === "bnitopo") icon = bnitopoIcon;
+     if (key === "anfccc") icon = ancfccIcon;
+   
+     L.marker(loc.coords, { icon: icon }).addTo(professionalMap);
+   });
 
     focusProfessionalLocation = function (key) {
       const loc = professionalLocations[key];
