@@ -360,15 +360,15 @@ if (typeof L !== "undefined" && window.innerWidth > 992) {
       },
       geolambert: {
         coords: [34.037, -4.999],
-        zoom: 12
+        zoom: 14
       },
       bnitopo: {
         coords: [32.928, -5.668],
-        zoom: 12
+        zoom: 14
       },
       anfcc: {
         coords: [32.926, -5.669],
-        zoom: 12
+        zoom: 14
       }
     };
 
